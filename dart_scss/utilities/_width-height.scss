@@ -1,0 +1,170 @@
+//=====================full size=============================*/
+.full {
+  @include breakpointMaker {
+    width: 100%;
+    height: 100%;
+    &-v {
+      width: 100vw;
+      height: 100vh;
+    }
+    &-vw {
+      width: 100vw;
+      min-width: 100vw;
+    }
+    &-vh {
+      height: 100vh;
+      min-height: 100vh;
+    }
+    &-h {
+      height: 100%;
+      min-height: 100%;
+    }
+    &-w {
+      width: 100%;
+      min-width: 100%;
+    }
+    &-a {
+      width: auto;
+      height: auto;
+    }
+  }
+}
+// custome width and height --------------------
+
+// .width,
+.w {
+  @include breakpointMaker {
+    @each $key in $widthContent {
+      &-#{$key} {
+        width: #{$key};
+      }
+    }
+
+    // px
+    @each $key in $number {
+      &-#{$key} {
+        // width: 100%;
+        // max-width: #{$key}px;
+        width: #{$key}px;
+        // width: 100%;
+        // max-width: #{$key}px;
+      }
+      &-#{$key}-max {
+        width: 100%;
+        max-width: #{$key}px;
+      }
+      &-#{$key}-min {
+        min-width: #{$key}px;
+      }
+    }
+    // rem
+    @for $key from 0 to 21 {
+      &-#{$key} {
+        // width: 100%;
+        // max-width: #{$key}rem;
+        width: #{$key}rem;
+      }
+    }
+    // %
+    @for $i from 0 through 20 {
+      &-#{$i*5}\% {
+        width: $i * 5%;
+      }
+    }
+    // vw
+    @for $i from 1 through 20 {
+      &-#{$i*5}vw {
+        width: $i * 5vw;
+      }
+    }
+    //  auto
+    &-a {
+      width: auto;
+    }
+  }
+}
+// .min-w {
+//   @each $key in $number {
+//     &-#{$key} {
+//       min-width: #{$key}px;
+//       // width: 100%;
+//     }
+//   }
+// }
+// .max-w {
+//   @each $key in $number {
+//     &-#{$key} {
+//       width: 100%;
+//       max-width: #{$key}px;
+//     }
+//   }
+// }
+
+// .height,
+.h {
+  @include breakpointMaker {
+    @each $key in $widthContent {
+      &-#{$key} {
+        height: #{$key};
+      }
+    }
+    // px
+    @each $key in $number {
+      &-#{$key} {
+        height: #{$key}px;
+        // max-height: #{$key}px;
+      }
+    }
+    // rem
+    @each $key, $value in $numbers {
+      &-#{$key} {
+        height: #{$key}rem;
+        // max-height: #{$key}rem;
+      }
+    }
+    // %
+    @for $i from 1 through 20 {
+      &-#{$i*5}\% {
+        height: $i * 5%;
+      }
+    }
+    // vh
+    @for $i from 1 through 20 {
+      &-#{$i*5}vh {
+        width: $i * 5vh;
+      }
+    }
+    //  auto
+    &-a {
+      height: auto;
+    }
+  }
+}
+
+.min-h {
+  @each $key in $number {
+    &-#{$key} {
+      min-height: #{$key}px;
+      // height: 100%;
+    }
+  }
+}
+.max-h {
+  @each $key in $number {
+    &-#{$key} {
+      height: 100%;
+      max-height: #{$key}px;
+    }
+  }
+}
+
+// ---------------svg ico
+
+.icon-svg,
+.h-6.w-6 {
+  // height: Div(1rem, 1rem) * 1em;
+  height: RemEm(1rem);
+  line-height: 1;
+  margin-bottom: -0.4em;
+  margin-top: -0.4em;
+}

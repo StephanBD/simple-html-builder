@@ -1,0 +1,98 @@
+//-------------------dark mode----------------------------------//
+//  some colors don´t change
+$colors-darkmode: (
+  primary: red,
+  secondary: blue,
+  tertiary: yellow,
+  quaternary: green,
+  pink: pink,
+  red: red,
+  orange: orange,
+  yellow: yellow,
+  brown: brown,
+  green: green,
+  cyan: cyan,
+  blue: blue,
+  purple: purple,
+  success: #28a745,
+  info: #17a2b8,
+  warning: #ffc107,
+  danger: #dc3545,
+  primary-light: #ff3333,
+  primary-dark: #cc0000,
+  secondary-light: #3333ff,
+  secondary-dark: #0000cc,
+  tertiary-light: #ffff33,
+  tertiary-dark: #cccc00,
+  quaternary-light: #00b300,
+  quaternary-dark: #004d00,
+  pink-light: #fff3f5,
+  pink-dark: #ff8da1,
+  red-light: #ff3333,
+  red-dark: #cc0000,
+  orange-light: #ffb733,
+  orange-dark: #cc8400,
+  yellow-light: #ffff33,
+  yellow-dark: #cccc00,
+  brown-light: #cc3636,
+  brown-dark: #7c2020,
+  green-light: #00b300,
+  green-dark: #004d00,
+  cyan-light: #33ffff,
+  cyan-dark: #00cccc,
+  blue-light: #3333ff,
+  blue-dark: #0000cc,
+  purple-light: #b300b3,
+  purple-dark: #4d004d,
+  success-light: #34ce57,
+  success-dark: #1e7e34,
+  info-light: #1fc8e3,
+  info-dark: #117a8b,
+  warning-light: #ffce3a,
+  warning-dark: #d39e00,
+  danger-light: #e4606d,
+  danger-dark: #bd2130,
+  // -----
+  // white: #f8f9fa,
+  white: #191c1f,
+  // gray-light: #dadada,
+  gray-light: #303030,
+  gray: #8a8a8a,
+  // gray-dark: #303030,
+  gray-dark: #dadada,
+  // black: #191c1f,
+  black: #f8f9fa,
+  // -----
+  light: #f8f9fa,
+  dark: #303030,
+);
+
+@mixin dark-theme {
+  //   background-color: $dark;
+  //   background-color: var(--dark);
+
+  // colors
+  @each $key, $value in $colors-darkmode {
+    --#{"" +$key}: #{$value};
+  }
+  // ---------
+  & img:not(.dark-theme) {
+    opacity: 0.75;
+    transition: opacity 0.5s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+// --------------
+@if ($dark-on-body) {
+  body.dark-theme {
+    @include dark-theme;
+  }
+} @else {
+  @media (dark-on-body: dark) {
+    :root {
+      @include dark-theme;
+    }
+  }
+}

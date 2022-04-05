@@ -1,0 +1,103 @@
+// alignment
+@each $value in $justify-content {
+  $name: str-replace($value, "space-");
+  .justify-c-#{$name},
+  .jc-#{$name} {
+    @include breakpointMaker {
+      justify-content: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $align-content {
+  .align-#{$value},
+  .ai-#{$value} {
+    @include breakpointMaker {
+      align-content: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $align-items {
+  .align-#{$value},
+  .ai-#{$value} {
+    @include breakpointMaker {
+      align-items: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $justify-items {
+  .justify-i-#{$value},
+  .ji-#{$value} {
+    @include breakpointMaker {
+      justify-items: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $order {
+  .order-#{$value},
+  .or-#{$value} {
+    @include breakpointMaker {
+      order: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $flex-direction {
+  .flex-#{$value},
+  .f-#{$value} {
+    @include breakpointMaker {
+      flex-direction: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $align-self {
+  .self-#{$value},
+  .sf-#{$value} {
+    @include breakpointMaker {
+      align-self: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $flex-wrap {
+  .#{$value} {
+    @include breakpointMaker {
+      flex-wrap: #{$value};
+      // wrap: #{$value};
+    }
+  }
+}
+//==========*/
+@each $value in $flex-flow {
+  .flow-#{$value},
+  .fw-#{$value} {
+    @include breakpointMaker {
+      flex-flow: #{$value};
+    }
+  }
+}
+
+//==========*/
+.grow {
+  @for $value from 0 to 5 {
+    &-#{$value} {
+      @include breakpointMaker {
+        flex-grow: $value;
+      }
+    }
+  }
+}
+//==========*/
+.shrink {
+  @for $value from 0 to 5 {
+    &-#{$value} {
+      @include breakpointMaker {
+        flex-shrink: $value;
+      }
+    }
+  }
+}

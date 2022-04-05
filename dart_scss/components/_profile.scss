@@ -1,0 +1,77 @@
+//===================profile picture=================================*/
+.profile-container {
+  width: 8em;
+  height: 8em;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .sphere {
+    border-radius: 50%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  & .profile-picture {
+    text-align: left;
+    background-color: white;
+
+    border: 2px solid white;
+
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+
+    @include img-container();
+
+    &-sh {
+      @extend .profile-picture;
+      box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+// ustome colors and animations------
+.red-to-blue {
+  background-color: #ffffff;
+  background-image: linear-gradient(
+    220deg,
+    #ffffff 0%,
+    #6284ff 50%,
+    #ff0000 100%
+  );
+  animation-name: rotar;
+  animation-duration: 2s;
+  //  box-shadow: -5px 5px 5px rgba(0, 0, 0, .5);
+}
+
+.black {
+  background-color: #ffe53b;
+  background-image: linear-gradient(147deg, #ffe53b 0%, #ff2525 74%);
+  animation-name: opacidad;
+  animation-duration: 2s;
+  animation-direction: reverse;
+  animation-fill-mode: forwards;
+  mix-blend-mode: hard-light;
+}
+
+// key frames
+@keyframes rotar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes opacidad {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}

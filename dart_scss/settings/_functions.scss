@@ -1,0 +1,263 @@
+//-------------------Div----------------------------------//
+@function Div($num1, $num2) {
+  @return math.div($num1, $num2);
+}
+
+//-----------convert text to var(--var-name)---------------------//
+
+@function Color($colorName) {
+  @return map-get($colors, $colorName);
+}
+@function Var($colorName) {
+  // $colorName: var(--#{$colorName});
+  $colorName: var(--#{$colorName, Color($colorName)});
+  @return $colorName;
+}
+
+// color: Var(gray-light) ;
+// color: Color(gray-dark) ;
+
+// @function Opacity($color, $opacity: 1) {
+//   @return transparentize($color, $opacity);
+// }
+
+@function Opacity($color, $opacity: 1) {
+  $opacity: $opacity;
+  @return change-color($color, $alpha: $opacity);
+}
+
+// color: Opacity(green, 0.2); => color: rgba(0, 128, 0, 0.8);
+
+//-----------converts numeric indexes to string keys---------------------//
+
+@function index-to-key($map, $index) {
+  $keys: map-keys($map);
+  // A list of all keys in a $breakpoints map
+  @return nth($keys, $index);
+}
+
+//-------------------pixel to em----------------------------------//
+$browser-context: 16px; // Default
+
+@function Em($pixels, $context: $browser-context) {
+  @return #{Div($pixels, $context) * 1em};
+}
+
+//  margin: Em(16px); = 1em
+//-------------------pixel to rem----------------------------------//
+
+@function Rem($rems, $context: $browser-context) {
+  @return #{Div($rems, $context)}rem;
+}
+//-------------------rem to em----------------------------------//
+
+@function RemEm($rems) {
+  @return #{Div($rems, 1rem)}em;
+}
+
+//  margin: Rem(16px); = 1rem
+//-------------------rem to pixel----------------------------------//
+
+@function Pixel($rem, $context: $browser-context) {
+  @return Div($rem, 1rem) * $context;
+}
+
+//   margin: Pixel(1rem); = 16px
+
+//-------------------remove units----------------------------------//
+
+@function remove-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return Div($number, ($number * 0 + 1));
+  }
+  @return $number;
+}
+// example
+//  font-size: remove-unit(2.99em);  => 2.99
+
+//-------------------replace string----------------------------------//
+@function str-replace($string, $search, $replace: "") {
+  $string: #{$string};
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+
+// expmple
+//   .algo2{
+//     margin: str-replace( #{&}, ".");
+//     margin: str-replace( &, ".");
+//     margin: str-replace( "xxxx", ".");
+//     margin: str-replace( xxxxxxx, ".");
+//   }
+//   output:
+//   .algo2 {
+//     margin: algo2;
+//     margin: algo2;
+//     margin: xxxx;
+//     margin: xxxxxxx;
+//   }
+
+//-------------------erase first letter (. or #)---------------------------//
+@function erase($string, $what) {
+  $string: quote(#{$string});
+  $what: quote($what);
+  $index: str-index($string, $what);
+  @if $index == 1 {
+    $sliced: str-slice($string, $index + 1, str-length($string));
+    @return unquote($sliced);
+  } @else {
+    @return unquote($string);
+  }
+}
+//---------------------string split--------------------------------//
+@function str-split($string, $separator) {
+  $string: #{$string};
+  // empty array/list
+  $split-arr: ();
+  // first index of separator in string
+  $index: str-index($string, $separator);
+  // loop through string
+  @while $index != null {
+    // get the substring from the first character to the separator
+    $item: str-slice($string, 1, $index - 1);
+    // push item to array
+    $split-arr: append($split-arr, $item);
+    // remove item and separator from string
+    $string: str-slice($string, $index + 1);
+    // find new index of separator
+    $index: str-index($string, $separator);
+  }
+  // add the remaining string to list (the last item)
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
+// $names: str-split(&, ", "); list of names
+
+//-------------------separateTwoSelectors----------------------------------//
+@function separateTwoSelectors($which: 1, $this: &) {
+  $string: quote(#{$this});
+  $index: null;
+  $index: str-index(#{$string}, ",");
+
+  @if $index != null {
+    $first: str-slice($string, 0, $index - 1);
+    $second: str-slice($string, $index + 2, str-length($string));
+
+    @if $which == 1 {
+      @return $first;
+    } @else {
+      @return $second;
+    }
+  }
+  @return $string;
+}
+
+//----------------------------------------------------*/
+@function encodecolor($string) {
+  @if type-of($string) == "color" {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string: unquote("#{$hex}");
+  }
+  $string: "#" + $string;
+  $string: str-replace(#{$string}, "##", "#");
+
+  @return to-lower-case(unquote($string));
+}
+
+//-------------------strip unit----------------------------------//
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return Div($number, ($number * 0 + 1));
+  }
+  @return $number;
+}
+//-------------------calc rule of three----------------------------------//
+@function ruleofthree($if, $is, $then) {
+  $algo: Div(($then * $is), $if);
+  @return $algo;
+}
+//-------------------map merge many----------------------------------//
+@function map-collect($maps...) {
+  $collection: ();
+
+  @each $map in $maps {
+    $collection: map-merge($collection, $map);
+  }
+  @return $collection;
+}
+// $colors: map-collect($color-name, $color-event, $color-category);
+
+//-------------------gradients----------------------------------//
+@function GradientLinear($direction: 0deg, $colors...) {
+  @return linear-gradient($direction, $colors);
+}
+@function GradientLinearRepeating($direction: 0deg, $colors...) {
+  @return repeating-linear-gradient($direction, $colors);
+}
+// ------------
+// shapes: circle
+// closest-side at 90% 55%
+// farthest-side at 90% 55%
+// closest-corner at 90% 55%
+// farthest-corner at 90% 55%
+@function GradientRadial($Shape: default, $colors...) {
+  @return radial-gradient($Shape, $colors);
+}
+@function GradientRadialRepeating($Shape: circle, $colors...) {
+  @return repeating-linear-gradient($Shape, $colors);
+}
+// ------------
+@function GradientConic($from: 0deg, $colors...) {
+  // background: conic-gradient( $colors);
+  //  from 0deg at 49% 48%,
+  @return conic-gradient(from $from, $colors);
+}
+
+// example
+// .gradient {
+//  background: Gradient(0deg, red 10%, grey) ,Gradient(90deg, red 10%, grey);
+//  background: GradientLinearRepeating(circle, red 10%, grey) ,GradientLinearRepeating(circle, red 10%, grey);
+
+//  background: GradientRadial(circle, red 10%, grey) ,GradientRadial(circle, red 10%, grey);
+//  background: GradientRadialRepeating(0deg, red 10%, grey) ,GradientRadialRepeating(90deg, red 10%, grey);
+
+//  background: GradientConic(0deg, red 10%, grey) ,GradientConic(90deg, red 10%, grey);
+// }
+
+// type of map ----------------------------------------
+@function is-map($var) {
+  @return type-of($var) == "map";
+}
+// use
+// @if is-map($paragraph-styles){
+//   color: red;
+// }
+
+// deep get from map ---------------------------------
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+// check if exist -----------------------------------
+@function IfIndex($text, $substring, $compare: 3) {
+  @if str-index($text, $substring) != null {
+    @return str-index($text, $substring) < $compare;
+  } @else {
+    @return false;
+  }
+}

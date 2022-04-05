@@ -1,0 +1,20 @@
+@mixin zoom-effect($scale: 0.2s, $transition: 1.3) {
+  transition: transform $scale ease-in-out;
+
+  &:hover img,
+  &:hover {
+    transform: scale($transition);
+  }
+
+  & img {
+    transition: transform $scale ease-in;
+    image-rendering: crisp-edges;
+  }
+}
+
+.zoom-effect {
+  @include zoom-effect();
+}
+
+// put it in the father
+// .zoom-effect is the container, it must have a img tag

@@ -1,0 +1,172 @@
+//-------------------backgrounds----------------------------------//
+
+.bg {
+  &-none,
+  &-0,
+  &-transparent,
+  &-t {
+    background-color: transparent;
+  }
+
+  &-current-color,
+  &-cc {
+    background-color: currentColor;
+  }
+
+  &-inherit,
+  &-i {
+    background-color: inherit;
+  }
+  // -----------------------------------
+  @include breakpointMaker {
+    // --------------
+    @each $key, $value in $colors {
+      // ----------
+      &-#{"" + $key},
+      &-#{"" + $key}-hover {
+        @include bg-($key);
+      }
+
+      // ----------
+      &-#{"" + $key} {
+        $colorName: #{&};
+        $colorName: erase($colorName, " ");
+        $colorName: erase($colorName, ".");
+        $colorName: erase($colorName, "#");
+        @at-root .hover\:#{$colorName}:hover {
+          @include bg-($key);
+        }
+      }
+
+      // ----------
+      &-#{"" + $key}-hover:hover {
+        @if IfIndex(#{"" + $key}, "light") or
+          IfIndex(#{"" + $key}, "dark") or
+          IfIndex(#{"" + $key}, "white") or
+          IfIndex(#{"" + $key}, "link") or
+          IfIndex(#{"" + $key}, "black")
+        {
+          @if $key == light {
+            @extend .bg-gray-light;
+          } @else if $key == dark {
+            @extend .bg-gray-dark;
+          } @else if $key == white {
+            @extend .bg-gray-light;
+          } @else if $key == black {
+            @extend .bg-gray-dark;
+          } @else if $key == link {
+            //  @extend .bg-gray-dark;
+          }
+        } @else {
+          @if str-index(#{"" + $key}, -light) {
+            @extend .bg-#{str-replace($key, -light)};
+          } @else if str-index(#{"" + $key}, -dark) {
+            @extend .bg-#{str-replace($key, -dark)};
+          } @else {
+            @extend .bg-#{"" + $key}-light;
+          }
+        }
+      }
+      // ----------
+      // &-#{"" + $key}-hover:hover {
+      //   @if str-index(#{"" + $key}, -light) {
+      //     @extend .bg-#{str-replace($key, -light)};
+      //   } @else if str-index(#{"" + $key}, -dark) {
+      //     @extend .bg-#{str-replace($key, -dark)};
+      //   } @else {
+      //     @extend .bg-#{"" + $key}-light;
+      //   }
+      //   background-color: lighten($value, 10%);
+      // }
+      // ----------
+      // &-#{"" + $key}-hover {
+      //   &:hover {
+      //     background-color: lighten($value, 10%);
+      //   }
+      // }
+      //   ----------
+      // @at-root body.dark-theme {
+      //   & .bg-#{"" + $key},
+      //   & .bg-#{"" + $key}-hover {
+      //     background: ColorDark($key);
+      //   }
+      //   & .bg-#{"" + $key}-hover {
+      //     &:hover {
+      //       background-color: lighten($value, $lighten);
+      //     }
+      //   }
+      // }
+      // -----------
+    }
+  }
+  // -----------------------------------
+
+  // @include breakpointMaker {
+  //   @each $key, $value in $colors {
+  //     &-#{"" + $key} {
+  //       @include bg-($key);
+  //       &-hover {
+  //         @include bg-($key, hover);
+  //         &-t:hover {
+  //           @include bg-($key, $text: true);
+  //         }
+  //       }
+  //       &-t {
+  //         @include bg-($key, $text: true);
+  //       }
+  //     }
+  //   }
+  // }
+
+  // @include breakpointMaker {
+  //   @each $key, $value in $colors {
+  //     &-#{"" + $key} {
+  //       @include bg-($key);
+  //       //------------------------------------------*/
+  //       // &-hover {
+  //       //   &:hover {
+  //       //     background-color: darken($value, $darken);
+  //       //   }
+  //       // }
+  //       //------------------------------------------*/
+  //       $colorName: #{&};
+  //       $colorName: erase($colorName, " ");
+  //       $colorName: erase($colorName, ".");
+  //       $colorName: erase($colorName, "#");
+
+  //       @at-root .hover\:#{$colorName}:hover {
+  //         @include bg-($key);
+  //       }
+  //       //------------------------------------------*/
+  //       &-t {
+  //         @if (lightness(Color($key)) > 40) {
+  //           @include bg-($key, $text: dark);
+  //         } @else {
+  //           @include bg-($key, $text: light);
+  //         }
+  //         //------------------------------------------*/
+  //         $colorName: #{&};
+  //         $colorName: erase($colorName, " ");
+  //         $colorName: erase($colorName, ".");
+  //         $colorName: erase($colorName, "#");
+
+  //         @at-root .hover\:#{$colorName}:hover {
+  //           @if (lightness(Color($key)) > 40) {
+  //             @include bg-($key, $text: dark);
+  //           } @else {
+  //             @include bg-($key, $text: light);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  // --------------
+
+  // --------------
+  // @each $key, $value in $colors {
+  //   &-#{"" + $key} {
+  //     @include bg-($value);
+  //   }
+  // }
+}

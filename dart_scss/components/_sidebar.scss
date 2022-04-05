@@ -1,0 +1,121 @@
+//====================sidebar================================*/
+// it requires Javascript
+
+$nav-width-sm: 56;
+$nav-width-bg: 160;
+
+// only on desktop
+.nav-p {
+  @media screen and (min-width: $md) {
+    &-l {
+      transition: padding 0.5s;
+      padding-left: 80px;
+    }
+    &-r {
+      transition: padding 0.5s;
+      padding-right: 80px;
+    }
+  }
+}
+//=====  NAV =====*/
+.sidebar {
+  // background-color: var(--gray-dark);
+  overflow: hidden;
+  transition: 0.5s width;
+  // ----
+  z-index: var(--z-fixed);
+  @include from($md) {
+    position: fixed;
+    top: 0;
+    // left: 0;
+    width: #{$nav-width-sm}px;
+    height: 100vh;
+  }
+  & .p {
+    // padding: 1.25rem 0.5rem 2rem;
+    padding: $padding $padding * 0.6 $padding * 2;
+  }
+  &-left {
+    @extend .sidebar;
+    left: 0;
+  }
+  &-right {
+    @extend .sidebar;
+    right: 0;
+  }
+
+  // show sidebar
+  &.show {
+    width: #{$nav-width-bg}px;
+  }
+}
+
+// put this in the body with Javascript depending of the sidebar
+.expand-left {
+  padding-left: $nav-width-bg + 16px;
+}
+.expand-right {
+  padding-right: $nav-width-bg + 16px;
+}
+
+// optional---------------------------------
+@mixin nav($minwidth, $maxwidth) {
+  overflow: hidden;
+  transition: 0.3s;
+  width: $minwidth;
+  // &:hover {
+  //   width: $maxwidth;
+  // }
+  & > * {
+    // &__item {
+    display: flex;
+  }
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    // padding: 0 .5rem;
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+
+    // padding: 0.5rem;
+    margin-bottom: $margin;
+    border-radius: $border-radius;
+    color: var(--white);
+    transition: 0.3s;
+
+    &:hover {
+      background-color: var(--dark);
+      color: var(--white);
+    }
+  }
+}
+
+//==========================aside==========================//
+
+.aside {
+  position: static;
+  // @include from($md) {
+
+  // @include from($md) {
+  width: $aside-width;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1000;
+  // height: 100%;
+  transform: translateX(-100%);
+  // }
+  // }
+}

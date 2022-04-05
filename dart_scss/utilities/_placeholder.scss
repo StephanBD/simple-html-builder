@@ -1,0 +1,14 @@
+//-------------------placeholder color----------------------------------//
+.ph {
+  &-t::placeholder,
+  &-transparent::placeholder {
+    color: transparent;
+  }
+  // @include breakpointMaker {
+  @each $key, $value in $colors {
+    &-#{"" + $key}::placeholder {
+      @include t-($key);
+    }
+  }
+  // }
+}

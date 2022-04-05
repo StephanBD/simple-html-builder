@@ -1,0 +1,137 @@
+extends ../pug_partials/_layout.pug
+//-=====================================
+
+
+block head
+	- var title = 'cards'
+	//- include layout/_seo.html
+	link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css") 
+
+//--------------------------------------
+
+block content
+	include ../pug_partials/_navbar.pug
+
+
+	//- .content-m.px-md
+	//- 	h1 cards
+	//- .content-m._reveal-hover
+	//- 	.card
+	//- 		.card-img
+	//- 			+img(200)
+	//- 		.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+	//- 		.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+	//- 		.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+	//- 	.card.flex-3-sm
+	//- 		.card-img
+	//- 			+img(200)
+	//- 		.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+	//- 		.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+	//- 		.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+	//- .content-m.flex.gap-3._reveal-hover
+
+		.card.flex-3-sm
+			.card-img
+				+img(200)
+			.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+			.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+			.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+		.card.flex-3-sm
+			.card-img-sm
+				+img(200)
+			.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+			.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+			.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+		.card.flex-3-sm
+			.card-img-md
+				+img(200)
+			.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+			.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+			.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+		.card.flex-3-sm
+			.card-img-lg
+				+img(200)
+			.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+			.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+			.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+		.card.flex-3-sm
+			.card-img-xl
+				+img(200)
+			.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+			.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+			.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+		.card-flex
+			+img(150).card-thumbnail-md
+			div.card-body
+				p.card-hed Class apetent
+				p.card-body Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, temporibus.
+
+	//- ---------------
+	.content-m.py-md._reveal-hover
+		ul.flex.nowrap.gap-2.overflow-auto
+			li.card.w-200-min
+					//- a(href="#") 
+					.card-img
+						+img(200)
+					.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+					.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+					.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+			li.card.w-200-min
+					//- a(href="#") 
+					.card-img
+						+img(200)
+					.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+					.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+					.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+			li.card.w-200-min
+					//- a(href="#") 
+					figure
+						picture.card-img 
+							+img(200).img-bg
+						figcaption.src-only legends
+					.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+					.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+					.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+			li.card.w-200-min
+					//- a(href="#") 
+					figure
+						picture.card-img 
+							+img(200).img-bg
+						figcaption legends
+			li.card.w-200-min
+					//- a(href="#") 
+					.card-img
+						+img(200)
+					.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+					.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+					.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+			li.card.w-200-min
+					//- a(href="#") 
+					.card-img
+						+img(200)
+					.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+					.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+					.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+			li.card.w-200-min
+					//- a(href="#") 
+					figure
+						picture.card-img 
+							+img(200).img-bg
+						figcaption.src-only legends
+					.card-head Lorem ipsum dolor, siuptatem officia hic sed?
+					.card-body Lorem ipsum dolor, siluptatem officia hic sed?
+					.card-footer Lorem ipsum dolor,dolores voluptatem officia hic sed?
+			li.card.w-200-min
+					//- a(href="#") 
+					figure
+						picture.card-img 
+							+img(200).img-bg
+						figcaption legends
+
+
+//--------------------------------------
+block foot
+	//- include pug_partials/_footer.pug
+
+//--------------------------------------
+block scripts

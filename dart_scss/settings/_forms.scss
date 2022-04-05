@@ -1,0 +1,584 @@
+//-------------------Forms----------------------------------//
+// input[type="radio"],
+// input[type="checkbox"],
+// input[type="reset"],
+// input[type="submit"]
+// // input[type="hidden"]
+//  {
+//   // width: auto;
+// }
+// input {
+// }
+// form:invalid button {
+//   pointer-events: none;
+// }
+
+// -----------------
+.form-conteiner {
+  overflow-x: auto;
+}
+// -----------------
+select,
+textarea,
+input {
+  // input:not(input[type="radio"], input[type="checkbox"], input[type="reset"], input[type="submit"], input[type="hidden"], input[type="range"]) {
+  max-width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  // width: 100%;
+  font-family: $fontFamily;
+  font-size: 1rem;
+  // border: 1px solid $input-line;
+  // background-color: Var(light);
+  background-color: transparent;
+  border: inherit;
+  border: Em(1px) solid transparent;
+  @include loopMap(map-deep-get($inpit-styles, default));
+
+  &.success {
+    border-color: Color(success);
+    border-color: Var(success);
+  }
+  &.danger {
+    border-color: Color(danger);
+    border-color: Var(danger);
+  }
+  &.warning {
+    border-color: Color(warning);
+    border-color: Var(warning);
+  }
+  &:disabled {
+    @include t-(gray);
+  }
+}
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="file"],
+input[type="image"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+textarea,
+select {
+  // color: inherit;
+  // height: 38px;
+  // padding: 5px 10px;
+  // padding: 3px 0px 3px 3px;
+
+  // border: none;
+  // border: 1px solid $input-line;
+
+  // border-width: 1px;
+  // border-style: solid;
+  // border-color: $input-line;
+  // width: auto;
+
+  // border-radius: $border-radius;
+
+  // display: block;
+  // &::placeholder,
+  // &-ms-input-placeholder,
+  // &::-ms-input-placeholder {
+  //   color: $gray-light;
+  //   font-weight: $italic;
+  //   font-family: inherit;
+  // }
+
+  // margin-top: $margin / 2;
+  // margin-bottom: $margin / 2;
+  // &:disabled {
+  //   color: Var(gray);
+  // }
+  width: 100%;
+  // padding: 3px 0px 0.25em 3px;
+  // padding: Div($padding, 3) 0px Div($padding, 3) Div($padding, 3);
+  // padding: 0.3em 0.5em;
+  padding: 0.3em;
+}
+
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="datetime"],
+input[type="datetime-local"] {
+  padding: 0.3em 0;
+}
+
+// Removes awkward default styles on some inputs for iOS */
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+// input[type="range"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  // padding: 0.3em 0.8em;
+}
+
+input:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  // border: 1px solid $input-line-focus;
+  outline: none;
+  @include loopMap(map-deep-get($inpit-styles, focus));
+}
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+//-------------------textarea----------------------------------//
+textarea {
+  min-height: 2em;
+  // min-height: 1rem * 3;
+  // min-width: 100%;
+  max-width: 100%;
+  // padding-top: 6px;
+  // padding-bottom: 6px;
+  resize: vertical;
+  overflow: auto;
+}
+//-------------------checkbox----------------------------------//
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline;
+  margin: 0 Em(Div($margin, 2));
+}
+
+//-------------------label----------------------------------//
+label {
+  display: inline-block;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+//-------------------range----------------------------------//
+input[type="range"] {
+  width: 100%;
+
+  &::-webkit-slider-thumb {
+    background: Color(accent-color);
+  }
+}
+%range {
+  padding: 0;
+  border-width: Em(1px);
+  border-style: solid;
+  border-color: $input-line;
+}
+// ---------------
+.range-line {
+  height: Em(1px);
+  margin-bottom: Em(16px);
+  margin-top: Em(16px);
+  @include bg-(gray-light);
+
+  &,
+  // &[type="range"]::-moz-range-thumb,
+  // &[type="range"]::-webkit-slider-runnable-track,
+  &[type="range"]::-webkit-slider-thumb {
+    border-radius: 0;
+    appearance: none;
+  }
+  &[type="range"]::-moz-range-thumb {
+    border-radius: 0;
+    appearance: none;
+  }
+  &[type="range"]::-ms-fill-upper {
+    border-radius: 0;
+    appearance: none;
+  }
+  // ---
+  // &[type="range"]::-moz-range-thumb,
+  &[type="range"]::-ms-thumb {
+    // background: inherit;
+    // @include bg-(#{$accent-color});
+    background: Color(accent-color);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: Em(1px) solid white;
+  }
+  &[type="range"]::-webkit-slider-thumb {
+    // background: inherit;
+    // @include bg-(#{$accent-color});
+    background: Color(accent-color);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: Em(1px) solid white;
+  }
+  &[type="range"]::-moz-range-thumb {
+    // background: inherit;
+    // @include bg-(#{$accent-color});
+    background: Color(accent-color);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: Em(1px) solid white;
+    outline: 0;
+  }
+  // ---
+  &[type="range"]::-webkit-progress-value {
+    background-color: Color(accent-color);
+    height: Em(3px);
+  }
+  &[type="range"]::-moz-range-progress {
+    background-color: Color(accent-color);
+    height: Em(3px);
+  }
+  &[type="range"]::-ms-track {
+    background-color: Color(accent-color);
+    height: Em(3px);
+  }
+  // &[type="range"]::-webkit-slider-runnable-track {
+  //   background: red;
+  //   border-color: red;
+  // }
+}
+// ----------------
+.range-round {
+  @extend %range;
+
+  &,
+  // &[type="range"]::-moz-range-thumb,
+  // &[type="range"]::-webkit-slider-runnable-track,
+  &[type="range"]::-webkit-slider-thumb {
+    border-radius: Em(50px);
+    appearance: none;
+  }
+  &[type="range"]::-moz-range-thumb {
+    border-radius: Em(50px);
+    appearance: none;
+  }
+  // &[type="range"]::-moz-range-thumb,
+  &[type="range"]::-webkit-slider-thumb {
+    // background-color: $primary;
+    // background-color: Var(primary);
+    // @include bg-(#{$accent-color});
+    background: Color(accent-color);
+    width: Em(20px);
+    height: Em(20px);
+    // border: 3px solid transparent;
+    border-radius: 50%;
+  }
+  appearance: none;
+
+  &[type="range"]::-moz-range-thumb {
+    background: Color(accent-color);
+    width: Em(20px);
+    height: Em(20px);
+    // border: 3px solid transparent;
+    border-radius: 50%;
+    border: none;
+    outline: 0;
+  }
+  // &[type="range"]::-webkit-progress-value {
+  //   background-color:Color(accent-color);
+  //   height: 100%;
+  // }
+  // &[type="range"]::-moz-range-progress {
+  //   background-color:Color(accent-color);
+  //   height: 100%;
+  // }
+}
+// ----------------
+.range {
+  @extend %range;
+
+  &,
+  // &[type="range"]::-moz-range-thumb,
+  // &[type="range"]::-webkit-slider-runnable-track,
+  &[type="range"]::-webkit-slider-thumb {
+    border-radius: 0;
+    appearance: none;
+  }
+  &[type="range"]::-moz-range-thumb {
+    border-radius: 0;
+    appearance: none;
+  }
+  // &[type="range"]::-moz-range-thumb,
+  &[type="range"]::-webkit-slider-thumb {
+    @include bg-(primary);
+    background: Color(accent-color);
+    width: Em(20px);
+    height: Em(20px);
+    border-radius: 0;
+  }
+  &[type="range"]::-moz-range-thumb {
+    @include bg-(primary);
+    background: Color(accent-color);
+    width: Em(20px);
+    height: Em(20px);
+    border-radius: 0;
+    border: none;
+    outline: 0;
+  }
+  // &[type="range"]::-webkit-progress-value {
+  //   background-color:Color(accent-color);
+  //   height: 100%;
+  // }
+  // &[type="range"]::-moz-range-progress {
+  //   background-color:Color(accent-color);
+  //   height: 100%;
+  // }
+}
+
+//-------------------color----------------------------------//
+$height-box: 25px;
+input[type="color"] {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  border-radius: 50%;
+  height: $height-box;
+}
+// input[type=color]::after {
+//   content: \025bc;
+//   position: absolute;
+//   display: inline-block;
+//   height: $height-box - 7.5px;
+//   top: 50%;
+//   left: 0;
+//   transform: translate(0, -50%);
+//   color: $white;
+//   background-color: $gray-dark;
+//   // font-size: 10px;
+
+// }
+
+//-------------------file----------------------------------//
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input[type="file"]::before {
+  content: "Select some files";
+  display: inline-block;
+  // background: $white;
+  // border: 1px solid #999;
+  // border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  // -webkit-user-select: none;
+  cursor: pointer;
+  // text-shadow: 1px 1px #fff;
+  // font-weight: 700;
+  // font-size: 10pt;
+}
+input[type="file"]:hover::before {
+  border-color: $dark;
+  // background-color: $gray-light;
+  @include bg-(gray-light);
+  border-color: var(--dark);
+  background-color: var(--gray-light);
+  outline: none;
+}
+input[type="file"]:active::before {
+  background: $white;
+  outline: none;
+}
+
+//-------------------form----------------------------------//
+
+::placeholder {
+  font-family: $fontFamily;
+  // color: Var(gray);
+  @include t-(gray);
+}
+
+//-------------------selectors----------------------------------//
+
+// https://www.w3schools.com/cssref/css_selectors.asp
+
+// :active	a:active	Selects the active link
+// ::after	p::after	Insert something after the content of each <p> element
+// ::before	p::before	Insert something before the content of each <p> element
+// :checked	input:checked	Selects every checked <input> element
+// :default	input:default	Selects the default <input> element
+// :disabled	input:disabled	Selects every disabled <input> element
+// :empty	p:empty	Selects every <p> element that has no children (including text nodes)
+// :enabled	input:enabled	Selects every enabled <input> element
+
+// :focus
+// :disabled
+// :valid
+// :invalid
+// :required
+// :checked
+// :default
+// :in-range
+// :out-of-range
+// :focus-within
+
+// -------------- custome
+.input {
+  &-checkbox {
+    appearance: none;
+    // display: none;
+    user-select: none;
+    // vertical-align: super;
+    background: rgba(0, 0, 0, 0);
+    position: relative;
+    &::after {
+      display: block;
+      content: "";
+      width: 0.2em;
+      height: 0.5em;
+      background-color: transparent;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+      border-style: solid;
+      border-color: Color(light);
+      border-color: Var(light);
+      border-bottom-width: 2px;
+      border-right-width: 2px;
+      border-top: none;
+      border-left: none;
+    }
+    &::before {
+      content: "";
+      width: 1em;
+      height: 1em;
+      // background: $gray-light;
+      @include bg-(gray-light);
+      // border: 1px solid $gray-light;
+      display: inline-block;
+      border-radius: Em(3px);
+      // margin-right: 8px;
+      vertical-align: middle;
+      // margin-top: -3px;
+      transition: background-color 0.2s ease-in-out;
+      margin-top: -0.3em;
+    }
+    &:hover::before,
+    &:focus::before {
+      // background: $gray;
+      @include bg-(gray);
+    }
+    &:checked::after {
+      opacity: 1;
+    }
+    &:checked::before {
+      // background:Color(accent-color);
+      @include bg-(accent-color);
+      // background:Color(accent-color)
+      //   url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjQzNHB0IiB2aWV3Qm94PSIwIC02NSA0MzQuNjc3MzMgNDM0IiB3aWR0aD0iNDM0cHQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTE1Mi4wMDM5MDYgMzA0LjM0Mzc1Yy01LjQ2MDkzNyAwLTEwLjkyMTg3NS0yLjA4OTg0NC0xNS4wODIwMzEtNi4yNWwtMTMwLjY2NDA2My0xMzAuNjY3OTY5Yy04LjM0Mzc1LTguMzM5ODQzLTguMzQzNzUtMjEuODI0MjE5IDAtMzAuMTY0MDYyIDguMzM5ODQ0LTguMzM5ODQ0IDIxLjgyMDMxMy04LjMzOTg0NCAzMC4xNjQwNjMgMGwxMTUuNTgyMDMxIDExNS41ODIwMzEgMjQ2LjI1MzkwNi0yNDYuMjVjOC4zMzk4NDQtOC4zMzk4NDQgMjEuODIwMzEzLTguMzM5ODQ0IDMwLjE2NDA2MyAwIDguMzM5ODQ0IDguMzQzNzUgOC4zMzk4NDQgMjEuODI0MjE5IDAgMzAuMTY3OTY5bC0yNjEuMzMyMDMxIDI2MS4zMzIwMzFjLTQuMTYwMTU2IDQuMTYwMTU2LTkuNjI1IDYuMjUtMTUuMDg1OTM4IDYuMjV6bTAgMCIvPjwvc3ZnPg==");
+      // background-repeat: no-repeat;
+      // background-position: center center;
+      // background-size: Em(12px);
+      // border-color: $gray-dark;
+      // border-color: Var(gray-dark);
+    }
+  }
+  // ---------------
+  &-radio {
+    appearance: none;
+    // display: none;
+    user-select: none;
+    background: rgba(0, 0, 0, 0);
+    position: relative;
+    &::after {
+      display: block;
+      content: "";
+      @include bg-(accent-color);
+      position: absolute;
+
+      height: 0.35em;
+      width: 0.35em;
+      top: 0.56em;
+      left: 0.19em;
+
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+      border-radius: 50%;
+    }
+    &::before {
+      content: "";
+      width: 0.7em;
+      height: 0.7em;
+      // background: $white;
+      @include bg-(white);
+      // border: 1px solid $gray-light;
+      display: inline-block;
+      border-radius: 50%;
+      // margin-right: 8px;
+      vertical-align: middle;
+      // margin-top: -3px;
+      transition: box-shadow 0.2s ease-in-out;
+      box-shadow: 0 0 0 0.1em Color(gray);
+      box-shadow: 0 0 0 0.1em Var(gray);
+    }
+    // &:hover::before,
+    // &:focus::before {
+    //   background: $gray-light;
+    // }
+    &:checked::after {
+      opacity: 1;
+    }
+
+    &:checked::before {
+      box-shadow: 0 0 0 0.1em Color(accent-color);
+      box-shadow: 0 0 0 0.1em Var(accent-color);
+    }
+  }
+  // -------------
+}
+
+// ------------------------------
+// .input {
+//   // &:not(:placeholder-shown),
+//   // &:focus {
+//   //   border-color: Color(danger);
+//   //   border-color: Var(danger);
+//   // }
+//   &:not(:placeholder-shown) ~ label,
+//   &:focus ~ label {
+//     border-color: Color(success);
+//     border-color: Var(success);
+//     // background: green;
+//   }
+// }
+
+// &:not(:placeholder-shown) ~ label,
+// &:focus ~ label {}
+
+// ------------------------------
+input {
+  @include loopMap(map-deep-get($inpit-styles, input));
+}
+select {
+  @include loopMap(map-deep-get($inpit-styles, select));
+}
+textarea {
+  @include loopMap(map-deep-get($inpit-styles, textarea));
+}

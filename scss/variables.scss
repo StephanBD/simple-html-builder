@@ -1,0 +1,286 @@
+// @use "sass:math";
+// === === === === === === COLORS === === === === === === */
+// brand colors */
+$brandColors: (
+  primary: #533828,
+  secondary: #a95834,
+  tertiary: #d7a554,
+  quaternary: #f0d6a6,
+);
+
+// link
+$link: #cfb191;
+
+// white to black */
+$white: #faf6ec;
+// $gray-light: #dadada;
+$gray: #8a8a8a;
+// $gray-dark: #807e6f;
+$black: #1f1d1c;
+// dark and light
+$light: #f8f9fa;
+$dark: #3d3a3e;
+
+// shadow  */
+$shadowBlur: 1px;
+$shadow_color: rgba(0, 0, 0, 0.3);
+
+// text select  */
+$selection-bg: map-get($brandColors, primary);
+$selection-color: $white;
+
+// colors ----------------
+$colors: (
+  pink: rgb(248, 130, 150),
+  red: red,
+  orange: orange,
+  yellow: yellow,
+  brown: #533828,
+  green: green,
+  cyan: cyan,
+  blue: blue,
+  purple: purple,
+  // notifiers
+  success: #28a745,
+  info: #17a2b8,
+  warning: #ffc107,
+  danger: #dc3545,
+  // -------
+  gray: $gray,
+  // input global color
+  accent-color: hotpink,
+);
+// use body:dark-theme or :root
+$dark-on-body: true;
+
+//====================================================*/
+// sizes */
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+// global breack point ()
+$globalBP: $md;
+
+// wieght */
+$italic: 300;
+$normal: 500;
+$bold: 700;
+
+// font */
+// $importFont2: "DMSerifDisplay-Regular.ttf";
+// $fontFamily: "Zen Kaku Gothic Antique", sans-serif;
+$font2: "DM Serif Display";
+// $fontFamily: "Lato", sans-serif;
+
+// title font
+// $importFont: "ZenKakuGothicAntique-Regular.ttf";
+// $font2: "DM Serif Display", serif;
+$fontFamily: "Zen Kaku Gothic Antique";
+
+$font-size: 18px;
+
+$title: 1.7rem;
+$subtitle: 1.2rem;
+
+$small: $font-size * 0.8;
+$normal: $font-size;
+$big: $font-size * 1.3;
+$huge: $font-size * 1.6;
+
+// display, kicker, title, subtitle, heading 1-6,  paragraph, leyend, captions
+
+// margins and paddings */
+$margin: 16px;
+$padding: 16px;
+
+// custom widths */
+$aside-width: 200px; // aside */
+$side-menu: 200px; // aside */
+$width-1: 100px;
+$footer: 3rem;
+
+// border radius */
+$border-radius: 4px;
+
+// inputs */
+$input-line: gray-light;
+$input-line-focus: $gray;
+
+// darken and lighten values */
+$darken: 10%;
+$lighten: 10%;
+
+// z index */
+$z-back_-10: -10;
+$z-normal_1: 1;
+$z-tooltip_10: 10;
+$z-fixed_100: 100;
+$z-modal_1000: 1000;
+
+// allow global breakpoint Maker (sm:, md:, lg:, xl: ) */
+$breakpointMaker: false;
+
+// === === === === === === styles === === === === === === //
+
+$kicker-styles: (
+  default: (
+    font-size: 16px,
+    font-family: $font2,
+    margin-bottom: 0px,
+    t: gray-dark,
+    line-height: 1,
+    font-weight: normal,
+  ),
+  sm: (
+    font-size: 16px * 0.8,
+  ),
+  md: (
+    font-size: 16px * 1.2,
+  ),
+  lg: (
+    font-size: 16px * 1.4,
+  ),
+  xl: (
+    font-size: 16px * 1.6,
+  ),
+);
+// ---------------
+$title-styles: (
+  default: (
+    font-size: $title,
+    font-family: $font2,
+    margin-bottom: 0px,
+    line-height: 1,
+    font-weight: normal,
+    letter-spacing: 0.02em,
+  ),
+  sm: (
+    font-size: (
+      ($title) * 0.8,
+    ),
+  ),
+  md: (
+    font-size: (
+      ($title) * 1.2,
+    ),
+  ),
+  lg: (
+    font-size: (
+      ($title) * 1.4,
+    ),
+  ),
+  xl: (
+    font-size: (
+      ($title) * 1.5,
+    ),
+  ),
+);
+// ---------------
+$subtitle-styles: (
+  default: (
+    font-size: $subtitle,
+    font-family: $font2,
+    margin-bottom: $padding,
+    t: tertiary,
+    font-weight: normal,
+    letter-spacing: 0.02em,
+  ),
+  sm: (
+    font-size: $subtitle * 0.8,
+  ),
+  md: (
+    font-size: $subtitle * 1.2,
+  ),
+  lg: (
+    font-size: $subtitle * 1.4,
+  ),
+  xl: (
+    font-size: $subtitle * 1.6,
+  ),
+);
+// ---------------
+$paragraph-styles: (
+  default: (
+    font-weight: normal,
+    font-size: $font-size,
+  ),
+  sm: (
+    font-size: $font-size * 0.8,
+  ),
+  md: (
+    font-size: $font-size * 1.2,
+  ),
+  lg: (
+    font-size: $font-size * 1.4,
+  ),
+  xl: (
+    font-size: $font-size * 1.6,
+  ),
+);
+// ---------------
+$hr-styles: (
+  default: (
+    width: 100%,
+    // border-style: solid;
+    my:
+      (
+        $margin,
+      ),
+    // margin-top: $margin;
+    border-top: none,
+    border-left: none,
+    border-right: none,
+    border-bottom: 1px solid var(--gray-light),
+  ),
+  sm: (
+    max-width: $padding * 4,
+  ),
+  md: (
+    max-width: $padding * 8,
+  ),
+  lg: (
+    max-width: $padding * 12,
+  ),
+  xl: (
+    max-width: $padding * 16,
+  ),
+);
+//-------------------navbar----------------------------------//
+$navbar-styles: (
+  default: (
+    background-color: hsla(0, 11%, 15%, 0.686),
+    t: white,
+  ),
+  sm: (
+    // max-width: $padding * 4,
+  ),
+  md: (
+    // max-width: $padding * 8,
+  ),
+  lg: (
+    // max-width: $padding * 12,
+  ),
+  xl: (
+    // max-width: $padding * 16,
+  ),
+);
+//-------------------card----------------------------------//
+$card-styles: (
+  default: (
+    padding: 0,
+  ),
+);
+//-------------------button----------------------------------//
+$button-styles: (
+  default: (
+    // background-color: hsla(0, 11%, 15%, 0.542 ),
+  ),
+);
+//-------------------input----------------------------------//
+$inpit-styles: (
+  default: (),
+  input: (),
+  select: (),
+  textarea: (),
+);

@@ -1,0 +1,300 @@
+@mixin fixed {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: $z-modal_1000;
+}
+
+// @mixin position {
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   // ------
+//   &.center {
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+//   &.bottom {
+//     top: 100%;
+//     transform: translate(-50%, -100%);
+//   }
+//   &.top {
+//     top: 0;
+//     transform: translate(-50%, 0);
+//   }
+//   &.left {
+//     left: 0;
+//     transform: translateX(-50%);
+//     transform: translateY(-50%);
+//   }
+//   &.right {
+//     left: 100%;
+//     transform: translate(-100%, -50%);
+//   }
+//   &.right.bottom {
+//     top: 100%;
+//     left: 100%;
+//     transform: translate(-100%, -100%);
+//   }
+//   &.left.bottom {
+//     top: 100%;
+//     left: 0;
+//     transform: translate(0, -100%);
+//   }
+//   &.right.top {
+//     top: 0;
+//     left: 100%;
+//     transform: translate(-100%, 0);
+//   }
+//   &.left.top {
+//     top: 0;
+//     left: 0;
+//     transform: translate(0, 0);
+//   }
+// }
+
+//-------------------modal----------------------------------//
+// full window
+.modal {
+  @include breakpointMaker() {
+    @include fixed;
+    pointer-events: none;
+    & > * {
+      pointer-events: initial;
+    }
+
+    &-bg {
+      @include fixed;
+      // @extend .fixed;
+      background-color: rgba(0, 0, 0, 0.239);
+      // @include blur-bg(2px); // add blur efect to the background
+    }
+  }
+}
+
+//-------------------fixed----------------------------------//
+.fixed {
+  @include breakpointMaker() {
+    position: fixed;
+    z-index: $z-modal_1000;
+
+    // @include position;
+
+    top: 0%;
+    left: 0%;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+  }
+}
+
+//-------------------relative-----------------------------//
+// put it in the father
+.relative {
+  position: relative;
+  // & > *:not(.absolute) {
+  // z-index: $z-normal_1;
+  // }
+}
+
+//-----------------------fixed and absolute------------------------------//
+.absolute {
+  @include breakpointMaker() {
+    position: absolute;
+    // display: block;
+    // top: 0%;
+    // left: 0%;
+    // transform: translate(-50%, -50%);
+
+    // @include position;
+
+    &-outside {
+      position: absolute;
+      display: block;
+      top: 0%;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      &.right {
+        top: 50%;
+        left: 100%;
+        transform: translate(0%, -50%);
+      }
+      &.left {
+        top: 50%;
+        left: 0%;
+        transform: translate(-100%, -50%);
+      }
+      &.top {
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+      }
+      &.bottom {
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+      }
+      &.left.top {
+        top: 0%;
+        left: 0%;
+        transform: translate(-100%, -100%);
+      }
+      &.left.bottom {
+        top: 100%;
+        left: 0%;
+        transform: translate(-100%, 0%);
+      }
+      &.right.bottom {
+        top: 100%;
+        left: 100%;
+        transform: translate(0%, 0%);
+      }
+      &.right.top {
+        top: 0%;
+        left: 100%;
+        transform: translate(0%, -100%);
+      }
+    }
+  }
+}
+
+// .absolute {
+//   // position: absolute;
+//   @include absolute();
+//   z-index: 0;
+
+//   &-center {
+// @include absolute(center);
+//   }
+//   &-right {
+//     @include absolute(right);
+//   }
+//   &-left {
+//     @include absolute(left);
+//   }
+//   // top and center
+//   &-top {
+//     @include absolute(top);
+//   }
+//   // bottom and center
+//   &-bottom {
+//     @include absolute(bottom);
+//   }
+// }
+
+@mixin position {
+  &.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &.bottom {
+    top: 100%;
+    transform: translate(-50%, -100%);
+  }
+  &.top {
+    top: 0;
+    transform: translate(-50%, 0);
+  }
+  &.left {
+    left: 0;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
+  }
+  &.right {
+    left: 100%;
+    transform: translate(-100%, -50%);
+  }
+  &.right.bottom {
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
+  }
+  &.left.bottom {
+    top: 100%;
+    left: 0;
+    transform: translate(0, -100%);
+  }
+  &.right.top {
+    top: 0;
+    left: 100%;
+    transform: translate(-100%, 0);
+  }
+  &.left.top {
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+  }
+}
+
+.absolute,
+.fixed {
+  @include position;
+}
+
+//-----------------------sticky-----------------------//
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  &-bottom,
+  &-b {
+    position: -webkit-sticky;
+    position: sticky;
+    // top: 100%;
+    // transform: translate(0, -100%);
+    bottom: 0;
+  }
+  &.center {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+//----------------------------------------------------*/
+.left {
+  &-a {
+    left: auto;
+  }
+  @for $var from 0 to 11 {
+    &-#{$var*10} {
+      left: $var * 10%;
+    }
+  }
+}
+.right {
+  &-a {
+    right: auto;
+  }
+  @for $var from 0 to 11 {
+    &-#{$var*10} {
+      right: $var * 10%;
+    }
+  }
+}
+.top {
+  &-a {
+    top: auto;
+  }
+  @for $var from 0 to 11 {
+    &-#{$var*10} {
+      top: $var * 10%;
+    }
+  }
+}
+.bottom {
+  &-a {
+    bottom: auto;
+  }
+  @for $var from 0 to 11 {
+    &-#{$var*10} {
+      bottom: $var * 10%;
+    }
+  }
+}

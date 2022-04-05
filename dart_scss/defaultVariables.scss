@@ -1,0 +1,195 @@
+// @use "sass:math";
+// === === === === === === COLORS === === === === === === */
+// brand colors */
+$primary: red;
+$secondary: blue;
+$tertiary: yellow;
+$quaternary: green;
+
+// link
+$link: #006ab1;
+
+// colors
+$pink: pink;
+$red: red;
+$orange: orange;
+$yellow: yellow;
+$brown: brown;
+$green: green;
+$cyan: cyan;
+$blue: blue;
+$purple: purple;
+
+// notifiers */
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+
+// white to black */
+$white: #f8f9fa;
+$gray-light: #dadada;
+$gray: #8a8a8a;
+$gray-dark: #303030;
+$black: #191c1f;
+// dark and light
+$light: #f8f9fa;
+$dark: #191c1f;
+
+// shadow  */
+$shadowBlur: 1px;
+$shadow_color: rgba(0, 0, 0, 0.3);
+
+// text select  */
+$selection-bg: $primary;
+$selection-color: $white;
+
+// input global color
+$accent-color: hotpink;
+
+//====================================================*/
+// sizes */
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+// global breack point ()
+$globalBP: $md;
+
+// wieght */
+$italic: 300;
+$normal: 500;
+$bold: 700;
+
+// font */
+$importFont: "https://fonts.googleapis.com/css?family=Lato:300,500,700&display=swap";
+$fontFamily: "Lato", sans-serif;
+
+// title font
+$importFont2: false;
+$font2: false;
+
+$title: 3.5rem;
+// $subtitle: 3rem;
+$font-size: 18;
+
+$small: 1rem * 0.8;
+$normal: 1rem;
+$big: 1rem * 1.3;
+$huge: 1rem * 1.6;
+
+// margins and paddings */
+$margin: 16px;
+$padding: 16px;
+
+// custom widths */
+$aside-width: 200px; // aside */
+$side-menu: 200px; // aside */
+$width-1: 100px;
+$footer: 3rem;
+
+// border radius */
+$border-radius: 4px;
+
+// inputs */
+$input-line: gray-light;
+$input-line-focus: $gray;
+
+// darken and lighten values */
+$darken: 10%;
+$lighten: 10%;
+
+// z index */
+$z-back_-10: -10;
+$z-normal_1: 1;
+$z-tooltip_10: 10;
+$z-fixed_100: 100;
+$z-modal_1000: 1000;
+
+// allow global breakpoint Maker (sm:, md:, lg:, xl: ) */
+$breakpointMaker: false;
+
+//-----------------------------------------------------//
+
+$kicker-styles: (
+  default: (
+    font-size: 16px,
+    margin-bottom: 0px,
+    t: gray-dark,
+    line-height: 1,
+    font-weight: normal,
+  ),
+  sm: (
+    font-size: 16px * 0.8,
+  ),
+  md: (
+    font-size: 16px * 1.2,
+  ),
+  lg: (
+    font-size: 16px * 1.4,
+  ),
+  xl: (
+    font-size: 16px * 1.6,
+  ),
+);
+// ---------------
+$title-styles: (
+  default: (
+    font-size: $title * 2,
+    margin-bottom: 0px,
+    line-height: 1,
+    font-weight: normal,
+  ),
+  sm: (
+    font-size: $title * 2 * 0.8,
+  ),
+  md: (
+    font-size: $title * 2 * 1.2,
+  ),
+  lg: (
+    font-size: $title * 2 * 1.4,
+  ),
+  xl: (
+    font-size: $title * 2 * 1.6,
+  ),
+);
+// ---------------
+$subtitleSize: $title * 0.7;
+$subtitle-styles: (
+  default: (
+    font-size: $subtitleSize,
+    margin-bottom: $padding * 2,
+  ),
+  sm: (
+    font-size: $subtitleSize * 0.8,
+  ),
+  md: (
+    font-size: $subtitleSize * 1.2,
+  ),
+  lg: (
+    font-size: $subtitleSize * 1.4,
+  ),
+  xl: (
+    font-size: $subtitleSize * 1.6,
+  ),
+);
+// ---------------
+$paragraph-styles: (
+  default: (
+    font-weight: normal,
+    font-size: 1rem,
+  ),
+  sm: (
+    font-size: 1rem * 0.8,
+  ),
+  md: (
+    font-size: 1rem * 1.2,
+  ),
+  lg: (
+    font-size: 1rem * 1.4,
+  ),
+  xl: (
+    font-size: 1rem * 1.6,
+  ),
+);
+// ---------------

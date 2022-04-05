@@ -1,0 +1,155 @@
+extends ../pug_partials/_layout.pug
+//-=====================================
+
+
+block head
+	- var title = 'title'
+	//- include layout/_seo.html
+	link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css") 
+
+//--------------------------------------
+
+block content
+	include ../pug_partials/_navbar.pug
+
+
+	//- .content-m.py-xl.flex.jc-center.bg-dark
+	//- 	ul.bg-light.flex.jc-center.w-400.navigation
+	//- 		li.active: a 
+	//- 				span.icon: i.fas.fa-home
+	//- 				span.text Home
+	//- 		li: a 
+	//- 				span.icon: i.fas.fa-user
+	//- 				span.text Pofile
+	//- 		li: a 
+	//- 				span.icon: i.fas.fa-comments
+	//- 				span.text Messages
+	//- 		li: a 
+	//- 				span.icon: i.fas.fa-home
+	//- 				span.text Photos
+	//- 		li: a 
+	//- 				span.icon: i.fas.fa-home
+	//- 				span.text Settings
+	//- 		.indicator
+
+	//- -------------
+	.content-m.px-md.my-xl
+		//- p Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus dignissimos sit facilis magnam doloribus iure perspiciatis tempora impedit ducimus eius ullam earum, placeat quidem, quasi similique reiciendis voluptatem. Eligendi, rem?
+		.container-square.flex
+			.img-square.flex-6
+				img(src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg", alt="").box-img
+			.img-square.flex-6
+				img(src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg", alt="").box-img
+			.img-square.flex-6
+				img(src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg", alt="").box-img
+			.img-square.flex-6
+				img(src="https://media-cdn.tripadvisor.com/media/photo-s/15/a4/9b/77/legacy-hotel-at-img-academy.jpg", alt="").box-img 	
+
+	
+	//- -------------
+	//- .content-m.px-md.my-xl
+		.grid.gap-6(class="md:col-4")
+			div.bg-red xxx
+			div.bg-red xxx
+			div.bg-red xx
+			div.bg-red xx
+			div.bg-red 
+			.grid.col-4.gap-1
+				div.bg-red xxx
+				div.bg-red xxx
+				div.bg-red xx
+				div.bg-red xx
+				div.bg-red xx
+		.flex.flex-gap-6
+			div.bg-orange.flex-3 xxx
+			div.bg-orange.flex-3 xxx
+			div.bg-orange.flex-3 xx
+			div.bg-orange.flex-3 xx
+			div.bg-orange.flex-3 xx
+			.flex.flex-gap-1.flex-10.bg-pink.flex-3
+				div.bg-orange.flex-4 xxx
+				div.bg-orange.flex-4 xxx
+				div.bg-orange.flex-4 xx
+				div.bg-orange.flex-4 xx
+				div.bg-orange.flex-4 xx
+		.columns(class="md:col-4").gap-5
+			div.bg-pink xxx
+			div.bg-pink xxx
+			div.bg-pink xx
+			div.bg-pink xx
+			div.bg-pink xx
+			.columns.col-4.gap-5
+				div.bg-pink xxx
+				div.bg-pink xxx
+				div.bg-pink xx
+				div.bg-pink xx
+				div.bg-pink xx
+	//- ----------------
+	.content-m.px-md
+		//- .bg-red.tooltip(data-tooltip="zzzzzzzzzzzz").item-full xxxx
+		//- .grid.gap.col-3
+			each val in colors
+				button(class=`bg-${val} btn-full`)= val
+				button(class=`bg-${val}-hover btn-full`)= val
+				button(class=`hover:bg-${val} btn-full`)= val 
+		.flex.flex-gap
+			each val in colors
+				button(class=`flex-4-sm bg-${val} btn-full`)= val
+				button(class=`flex-4-sm bg-${val}-hover btn-full`)= val
+				button(class=`flex-4-sm hover:bg-${val} btn-full`)= val 
+
+
+
+	.content-m.px-md
+		h1 doc
+
+
+		p.kicker-sm kicker
+		p.kicker kicker
+		p.kicker-md kicker
+		p.kicker-lg kicker
+		p.kicker-xl kicker
+
+		p.title-sm title
+		p.title title
+		p.title-md title
+		p.title-lg title
+		p.title-xl title
+
+		p.subtitle-sm subtitle
+		p.subtitle subtitle
+		p.subtitle-md subtitle
+		p.subtitle-lg subtitle
+		p.subtitle-xl subtitle
+
+		p.caption caption
+		p.paragraph-sm paragraph
+		p.paragraph paragraph
+		p.paragraph-md paragraph
+		p.paragraph-lg paragraph
+		p.paragraph-xl paragraph
+
+		hr
+		p.kicker-sm kicker
+		p.title-sm title
+		p.subtitle-sm subtitle
+		p.kicker kicker
+		p.title title
+		p.subtitle subtitle
+		p.kicker-md kicker
+		p.title-md title
+		p.subtitle-md subtitle
+		p.kicker-lg kicker
+		p.title-lg title
+		p.subtitle-lg subtitle
+		p.title-xl title
+		p.kicker-xl kicker
+		p.subtitle-xl subtitle
+
+
+//--------------------------------------
+block foot
+	//- include pug_partials/_footer.pug
+
+//--------------------------------------
+block scripts

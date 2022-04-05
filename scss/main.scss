@@ -1,0 +1,200 @@
+@use "sass:math";
+// @import "dart_scss/0_reset/minireset.scss";
+
+// @import "dart_scss/defaultVariables.scss";
+
+// //==========================custome variables==========================*/
+@import "variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Zen+Kaku+Gothic+Antique:wght@400;700&display=swap");
+
+// $fontUrl: "../webfonts/";
+// @font-face {
+//   font-family: $fontFamily;
+//   font-style: normal;
+//   font-weight: 700;
+//   // font-display: block;
+//   src: url(#{$fontUrl+$importFont});
+// }
+// @font-face {
+//   font-family: $font2;
+//   font-style: normal;
+//   font-weight: 500;
+//   // font-display: block;
+//   src: url(#{$fontUrl+$importFont});
+// }
+
+// //==========================================================*/
+@import "dart_scss/settings";
+
+// @import "dart_scss/settings/maps";
+// @import "dart_scss/settings/functions";
+// @import "dart_scss/settings/mixins";
+
+// @import "dart_scss/settings/base_old";
+// @import "dart_scss/settings/forms";
+// @import "dart_scss/settings/dark-mode";
+// @import "dart_scss/settings/buttons";
+// @import "dart_scss/settings/toggles";
+
+// ------------------------
+// @import "dart_scss/layout";
+@import "dart_scss/layout/columns";
+@import "dart_scss/layout/flex-2";
+@import "dart_scss/layout/grid";
+@import "dart_scss/layout/col";
+@import "dart_scss/layout/layout";
+
+// ------------------------
+@import "dart_scss/components";
+// @import "dart_scss/utilities";
+// ------------------------
+@import "dart_scss/utilities/border";
+@import "dart_scss/utilities/margin-padding";
+@import "dart_scss/utilities/utilities";
+// @import "dart_scss/utilities/filter";
+@import "dart_scss/utilities/images";
+@import "dart_scss/utilities/modal";
+// @import "dart_scss/utilities/shadow";
+@import "dart_scss/utilities/shapes";
+// @import "dart_scss/utilities/transform";
+@import "dart_scss/utilities/width-height";
+@import "dart_scss/utilities/background-colors";
+@import "dart_scss/utilities/typography";
+// @import "dart_scss/utilities/placeholder";
+@import "dart_scss/utilities/alignment";
+
+// ------------------------
+@import "dart_scss/debug";
+
+//====================================================//
+
+.cont {
+  // width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fc5c65;
+}
+
+.bar {
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px 10px 20px 20px;
+  box-shadow: 3px 3px 0px 0px rgb(235 59 90);
+}
+
+.bar .bar-item {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 25px;
+  cursor: pointer;
+  & > * {
+    pointer-events: none;
+  }
+}
+
+.bar .bar-item i {
+  z-index: 1;
+  position: relative;
+  color: #a4b0be;
+  transition: all 0.3s ease-in-out;
+}
+
+.bar .bar-item.pre-active i {
+  color: #fc5c65;
+}
+
+.bar .bar-item.active i {
+  color: #fc5c65;
+  animation: colour 10s ease-in-out;
+}
+
+.bar .bar-item.active .bar-fluid {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #fc5c65;
+  width: 100%;
+  height: 0px;
+  animation: fluid 10s ease-in-out;
+}
+
+.bar .bar-item.active .bar-fluid:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -50%;
+  background-color: #ffffff;
+  width: 110%;
+  height: 400%;
+  border-radius: 50%;
+}
+
+.bar .bar-item.active .bar-fluid:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: -50%;
+  background-color: #ffffff;
+  width: 110%;
+  height: 400%;
+  border-radius: 50%;
+}
+
+.bar .bar-item.active .drop {
+  position: absolute;
+  top: -2.5px;
+  left: 30.5px;
+  background-color: #fc5c65;
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
+  animation: drop 10s ease-in-out;
+}
+
+@keyframes colour {
+  0% {
+    color: #a4b0be;
+  }
+  55% {
+    color: #a4b0be;
+    transform: scale(1);
+  }
+  60% {
+    color: #fc5c65;
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fluid {
+  0% {
+    height: 0px;
+  }
+  30% {
+    height: 10px;
+  }
+  100% {
+    height: 0px;
+  }
+}
+
+@keyframes drop {
+  20% {
+    top: -2.5px;
+  }
+  50% {
+    top: 21px;
+  }
+  51% {
+    top: -2.5px;
+  }
+}

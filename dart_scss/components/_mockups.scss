@@ -1,0 +1,97 @@
+.mockup {
+  &-container {
+    position: relative;
+    // border: 1px solid red;
+    width: calc(100% - 6px);
+    max-width: 340px;
+    height: 720px;
+    border-radius: 40px;
+    // overflow: hidden;
+    // padding: 10px;
+    box-shadow: 0 2px 10px black;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 40px;
+      background: rgb(10%, 10%, 10%);
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      left: 100%;
+    }
+    &::before {
+      top: 70px;
+    }
+    &::after {
+      top: 130px;
+    }
+  }
+
+  &-border {
+    z-index: $z-fixed_100;
+    border-radius: inherit;
+    padding: 5px;
+    box-shadow: 0 0 4px 3px #000 inset, 0 0 0 10px rgb(20%, 20%, 20%) inset;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    // &::before {
+    //   content: "zzzz";
+    //   position: absolute;
+    //   // width: 50%;
+    //   height: 33px;
+    //   top: 10px;
+    //   left: 25%;
+    //   right: 25%;
+    //   background: rgb(20%, 20%, 20%);
+    //   border-bottom-left-radius: 20px;
+    //   border-bottom-right-radius: 20px;
+    // }
+  }
+  &-content {
+    overflow-y: auto;
+    //  Hide vertical scrollbar */
+    overflow-x: hidden;
+    //  Hide horizontal scrollbar */
+    height: 100%;
+    border-radius: inherit;
+    padding: 10px;
+    // scrollbar----
+    -ms-overflow-style: none;
+    //  IE and Edge */
+    scrollbar-width: none;
+    //  Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &-bar {
+      &-top {
+        @include py-(8px);
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        z-index: $z-tooltip_10;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+      &-bottom {
+        @include py-(8px);
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        z-index: $z-tooltip_10;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    }
+  }
+}

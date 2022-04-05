@@ -1,0 +1,234 @@
+.diamond {
+  transform: rotateZ(45deg);
+  display: flex;
+  width: 4em;
+  height: 4em;
+  & > * {
+    // display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    transform: scale(1.6) rotateZ(-45deg);
+    // transform: rotateZ(-45deg) scale(1.5) translateX(5px);
+  }
+}
+
+.r {
+  border-radius: $border-radius;
+  // @for $var from 0 to 10 {
+  //   &-#{$var} {
+  //     border-radius: $var * 5px;
+  //   }
+  // }
+
+  &-circle {
+    border-radius: 100%;
+  }
+
+  // &-top {
+  //   border-top-left-radius: $border-radius;
+  //   border-top-right-radius: $border-radius;
+  //   @for $var from 0 to 11 {
+  //     &-#{$var} {
+  //       border-top-left-radius: $var * 5px;
+  //       border-top-right-radius: $var * 5px;
+  //     }
+  //   }
+  // }
+  // &-bottom {
+  //   border-bottom-left-radius: $border-radius;
+  //   border-bottom-right-radius: $border-radius;
+  //   @for $var from 0 to 11 {
+  //     &-#{$var} {
+  //       border-bottom-left-radius: $var * 5px;
+  //       border-bottom-right-radius: $var * 5px;
+  //     }
+  //   }
+  // }
+  // &-left {
+  //   border-top-left-radius: $border-radius;
+  //   border-bottom-left-radius: $border-radius;
+  //   @for $var from 0 to 11 {
+  //     &-#{$var} {
+  //       border-top-left-radius: $var * 5px;
+  //       border-bottom-left-radius: $var * 5px;
+  //     }
+  //   }
+  // }
+  // &-right {
+  //   border-bottom-right-radius: $border-radius;
+  //   border-top-right-radius: $border-radius;
+  //   @for $var from 0 to 11 {
+  //     &-#{$var} {
+  //       border-bottom-right-radius: $var * 5px;
+  //       border-top-right-radius: $var * 5px;
+  //     }
+  //   }
+  // }
+  // -----------------------------
+
+  &tr {
+    border-top-right-radius: $border-radius;
+    @for $var from 0 to 11 {
+      &-#{$var} {
+        border-top-right-radius: $var * 5px;
+      }
+    }
+  }
+  //   ------------
+
+  &tl {
+    border-top-left-radius: $border-radius;
+    @for $var from 0 to 11 {
+      &-#{$var} {
+        border-top-left-radius: $var * 5px;
+      }
+    }
+  }
+  //   ------------
+  &br {
+    border-bottom-right-radius: $border-radius;
+    @for $var from 0 to 11 {
+      &-#{$var} {
+        border-bottom-right-radius: $var * 5px;
+      }
+    }
+  }
+  //   ------------
+  &bl {
+    border-bottom-left-radius: $border-radius;
+    @for $var from 0 to 11 {
+      &-#{$var} {
+        border-bottom-left-radius: $var * 5px;
+      }
+    }
+  }
+
+  //   ------------
+  @for $var from 0 to 11 {
+    // ----
+    &t-#{$var} {
+      @extend .rtr-#{$var};
+      @extend .rtl-#{$var};
+    }
+    // ----
+    &b-#{$var} {
+      @extend .rbr-#{$var};
+      @extend .rbl-#{$var};
+    }
+    // ----
+    &l-#{$var} {
+      @extend .rtl-#{$var};
+      @extend .rbl-#{$var};
+    }
+    // ----
+    &r-#{$var} {
+      @extend .rtr-#{$var};
+      @extend .rbr-#{$var};
+    }
+    // ----
+    &x-#{$var} {
+      @extend .rl-#{$var};
+      @extend .rr-#{$var};
+    }
+    // ----
+    &y-#{$var} {
+      @extend .rt-#{$var};
+      @extend .rb-#{$var};
+    }
+    // ----
+    &-#{$var} {
+      border-radius: $var * 4px;
+    }
+  }
+}
+.circle {
+  @extend .r-circle;
+}
+
+//-------------------shapes----------------------------------//
+
+// .box {
+//   // @include square(4.5rem);
+//   width: 4.5rem;
+//   height: 4.5rem;
+//   // width: 4.5em;
+//   // height: 4.5em;
+//   display: inline-block;
+
+//   @each $num in $number {
+//     &-#{$num} {
+//       width: #{$num}px;
+//       height: #{$num}px;
+//       display: inline-block;
+//     }
+//   }
+// }
+
+//-----------------------------------------------------//zzz
+// @mixin parallelogram {
+//   --width: 100px;
+//   // background: red;
+//   display: inline-block;
+//   width: var(--width);
+//   margin-right: -14px;
+//   clip-path: polygon(0% 0%, calc(var(--width) - 10px) 0%, 100% 100%, 10px 100%);
+//   // text-align: center;
+//   // color: white;
+//   transition: all 0.3s;
+// }
+.parallelogram {
+  --width: 100px;
+  // background: red;
+  display: inline-block;
+  width: var(--width);
+  margin-right: -14px;
+  clip-path: polygon(0% 0%, calc(var(--width) - 10px) 0%, 100% 100%, 10px 100%);
+  // text-align: center;
+  // color: white;
+  transition: all 0.3s;
+}
+
+.box {
+  // font-size: 15px;
+  @include box-em(1.5em);
+  &-lower {
+    // font-size: 15px;
+    @include box-em(1.5em, $lower: true);
+  }
+  @for $var from 1 to 10 {
+    &-#{$var} {
+      // font-size: 15px;
+      @include box-em($var * 1em);
+      &-lower {
+        // font-size: 15px;
+        @include box-em($var * 1em, $lower: true);
+      }
+    }
+  }
+}
+.rectangle {
+  // font-size: 15px;
+  @include box-em(1.5em, 2em);
+  &-lower {
+    // font-size: 15px;
+    @include box-em(1.5em, 2em, $lower: true);
+  }
+  @for $var from 1 to 5 {
+    &-#{$var} {
+      // font-size: 15px;
+      @include box-em($var * 1em, $var * 1.5em);
+      &-lower {
+        // font-size: 15px;
+        @include box-em($var * 1em, $var * 1.5em, $lower: true);
+      }
+    }
+  }
+}
+
+//------------------dot----------------------------------*/
+.dot {
+  font-size: 10px;
+  height: 1em;
+  width: 1em;
+  border-radius: 100%;
+}

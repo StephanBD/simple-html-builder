@@ -1,0 +1,146 @@
+//-------------------Buttons----------------------------------//
+.btn-cursor {
+  cursor: pointer;
+  background: none;
+  text-decoration: none;
+  @include noSelectText;
+  &:active {
+    transform: scale(0.9);
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    outline: 0;
+  }
+}
+
+.button,
+.btn,
+button,
+%btn {
+  appearance: button;
+  // input[type="submit"],
+  // input[type="reset"],
+  // input[type="button"] {
+  background: none;
+  // @include btn();
+  // padding: Div($padding, 4) Div($padding, 2);
+  // padding: Em((Div($padding, 4) - 1px)) Em((Div($padding, 2) - 1px));
+  padding: Em(Div($padding, 4)) Em(Div($padding, 2));
+  // letter-spacing: 1;
+  text-decoration: none;
+  border: initial;
+  cursor: pointer;
+  // display: block;
+  outline: 0;
+  display: inline-block;
+  // background-color: transparent;
+  // font-size: 1rem;
+  // font-family: $fontFamily;
+  @include noSelectText;
+  // transition: 0.2s;
+  transition: transform 0.2s;
+  color: inherit;
+  text-align: center;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  border: Em(1px) solid transparent;
+  line-height: 1;
+
+  @include loopMap(map-deep-get($button-styles, default));
+  // ---------------
+  &:hover,
+  &:focus,
+  &:active {
+    outline: 0;
+    // background-color: #0000006b;
+    // color: initial;
+    // opacity: 0.8;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  // &:active {
+  //   outline: 0;
+  //
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &-ml {
+    margin-left: Em(Div($padding, 2));
+  }
+  &-mr {
+    margin-right: Em(Div($padding, 2));
+  }
+  // ------------------------ e.target
+  & > * {
+    pointer-events: none;
+  }
+}
+button {
+  font-size: 1rem;
+}
+
+// button,
+// .btn {
+//   @include noSelectText;
+// }
+
+.btn {
+  // padding: 0.6em 0.8em 0.8em;
+
+  // border-radius: 5px;
+  // box-shadow: inset 0 -0.2em 8px -4px rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 0.2em 5px rgba(0, 0, 0, 0.2);
+  // outline: none;
+
+  &-left {
+    @extend .btn;
+    // margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  &-center {
+    display: block;
+    @extend .btn;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &-right {
+    display: block;
+    @extend .btn;
+    margin-left: auto;
+    // margin-right: auto;
+  }
+  &-full {
+    @extend .btn;
+    width: 100%;
+  }
+}
+
+// .btn-border {
+//   @extend .btn;
+//   transition: outline-style 0.2s ease, outline-offset 0.2s ease;
+//   border: 2px solid Color(primary);
+//   // outline: 2px solid $primary;
+//   // &:hover {
+//   // outline-offset: 2px;
+//   // outline: 2px solid $primary;
+//   // }
+// }
+
+$num: 1;
+.btn {
+  @each $key, $value in $breakpoints {
+    &-#{$key} {
+      @extend .btn;
+      padding: Em(Div($padding * $num, 6)) Em(Div($padding * $num, 3));
+    }
+    $num: $num + 1;
+  }
+}
+
+// .btn {
+//   @include mapProps(btn, $button-styles);
+// }

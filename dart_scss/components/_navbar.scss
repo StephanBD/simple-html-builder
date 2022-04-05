@@ -1,0 +1,95 @@
+%navbar {
+  @include loopMap(map-deep-get($navbar-styles, default));
+}
+// -------
+@mixin navbar-list($breakPoint: $md) {
+  @include from($breakPoint) {
+    flex-direction: row;
+    position: relative;
+    width: auto;
+    background-color: transparent;
+    flex-basis: auto;
+    & > * {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ---------------------------------
+.navbar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed_100;
+}
+// ---------------------------------
+.navbar {
+  @include mapProps(navbar, $navbar-styles);
+
+  // --------------------
+  &-list {
+    top: 100%;
+    left: 0;
+    // justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: $z-fixed_100;
+    list-style: none;
+    margin-bottom: 0;
+    // ----
+    display: flex;
+    // background-color: inherit;
+    // position: absolute;
+    width: 100%;
+    // text-align: center;
+    // flex-direction: column;
+    flex-basis: 100%;
+
+    .navbar-sm & {
+      @include navbar-list($sm);
+    }
+    .navbar-md & {
+      @include navbar-list($md);
+    }
+    // ---------
+    &-col {
+      @extend .navbar-list;
+      flex-direction: column;
+      & > * {
+        width: inherit;
+        margin-bottom: $margin;
+      }
+    }
+  }
+  // ------------------
+  &-toggle {
+    display: inline-block;
+
+    .navbar-sm & {
+      @include from($sm) {
+        display: none;
+      }
+    }
+    .navbar-md & {
+      @include from($md) {
+        display: none;
+      }
+    }
+  }
+}
+
+// example: -------------------------
+
+// .navbar-fixed >
+// <div class=" navbar-sm   ">
+//   <a>LOGO</a>
+
+//   <button class="navbar-toggle">x</button>
+
+//   <div class="navbar-list  sm:show">
+//     <a class="btn">home</a>
+//     <a class="btn">contact</a>
+//   </div>
+
+// </div>

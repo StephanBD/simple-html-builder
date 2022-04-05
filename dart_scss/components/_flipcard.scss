@@ -1,0 +1,136 @@
+//-------------------flip card----------------------------------//
+@mixin fullWH {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+@mixin viewPosition {
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.flip_container {
+  position: relative;
+  perspective: 200px;
+  // width: 250px;
+
+  // padding: 0;
+  // display: block;
+  // border: 1px solid red;
+  // &-full {
+  //   @extend .flip_container;
+  //   // width: 100%;
+  //   height: 100%;
+  //   min-height: 100%;
+  // }
+
+  & .flip-diagonal,
+  & .flip-d,
+  & .flip-vertical,
+  & .flip-horizontal,
+  & .flip-h,
+  & .flip-v {
+    @include fullWH;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+  // --------
+  & .front {
+    @include viewPosition;
+    @include fullWH;
+  }
+  // --------
+  & .flip-vertical,
+  & .flip-v {
+    & .back {
+      @include viewPosition;
+      @include fullWH;
+      transform: rotateX(180deg);
+    }
+  }
+  & .flip-horizontal,
+  & .flip-h {
+    & .back {
+      @include viewPosition;
+      @include fullWH;
+      transform: rotateY(180deg);
+    }
+  }
+
+  & .flip-diagonal,
+  & .flip-d {
+    & .back {
+      @include viewPosition;
+      @include fullWH;
+      transform: rotate3d(1, 1, 0, 180deg);
+    }
+  }
+  // ----------
+
+  &:hover .flip-horizontal,
+  &:hover .flip-h {
+    transform: rotateY(180deg);
+  }
+  &:hover .flip-vertical,
+  &:hover .flip-v {
+    transform: rotateX(180deg);
+  }
+  &:hover .flip-diagonal,
+  &:hover .flip-d {
+    transform: rotate3d(1, 1, 0, 180deg);
+  }
+}
+
+.flip_click {
+  position: relative;
+  perspective: 200px;
+
+  // &-full {
+  //   @extend .flip_container;
+  //   height: 100%;
+  //   min-height: 100%;
+  // }
+
+  & .flip-vertical,
+  & .flip-horizontal,
+  & .flip-h,
+  & .flip-v {
+    @include fullWH;
+    perspective: 200px;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    & > * {
+      overflow: hidden;
+    }
+  }
+  & .front {
+    @include viewPosition;
+    @include fullWH;
+  }
+  & .back {
+    &-vertical,
+    &-v {
+      @include viewPosition;
+      @include fullWH;
+      transform: rotateX(180deg);
+    }
+    &-horizontal,
+    &-h {
+      @include viewPosition;
+      @include fullWH;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.fliped .flip-horizontal,
+  &.fliped .flip-h {
+    transform: rotateY(180deg);
+  }
+  &.fliped .flip-vertical,
+  &.fliped .flip-v {
+    transform: rotateX(180deg);
+  }
+}

@@ -1,0 +1,118 @@
+//-----------------------------------------------------//
+// box-shadow: x  y   blur  size  color;
+// box-shadow: inset  x   y   blur  size  color;
+// text-shadow: x   y   blur  size  color;
+
+// --------------------
+.shadow {
+  box-shadow: 0 0 10px $shadow_color;
+  &-text,
+  &-t {
+    text-shadow: 0px 2px 2px $shadow_color;
+    &-l,
+    &-lg {
+      text-shadow: 0px 5px 9px $shadow_color;
+    }
+    &-sm,
+    &-s {
+      text-shadow: 3px 3px 5px $shadow_color;
+    }
+  }
+  &-none,
+  &-0,
+  &-n {
+    box-shadow: none;
+  }
+  // ----------
+  &-sm {
+    box-shadow: 0 2px 5px $shadow_color;
+  }
+  &-md {
+    box-shadow: 0 2px 7px 4px $shadow_color;
+  }
+  &-lg {
+    box-shadow: 0 0px 10px 5px $shadow_color;
+  }
+  &-xl {
+    box-shadow: 0 2px 15px 7px $shadow_color;
+  }
+  // ---------
+  &-left {
+    box-shadow: -10px 0px 15px -5px $shadow_color;
+    &-sm {
+      box-shadow: -10px 0px 15px -10px $shadow_color;
+    }
+    &-lg {
+      box-shadow: -10px 0px 25px 0 $shadow_color;
+    }
+  }
+  // --
+  &-right {
+    box-shadow: 10px 0px 15px -5px $shadow_color;
+    &-sm {
+      box-shadow: 10px 0px 15px -10px $shadow_color;
+    }
+    &-lg {
+      box-shadow: 10px 0px 25px 0 $shadow_color;
+    }
+  }
+  // --
+  &-top {
+    box-shadow: 0px -10px 15px -5px $shadow_color;
+    &-sm {
+      box-shadow: 0px -10px 15px -10px $shadow_color;
+    }
+    &-lg {
+      box-shadow: 0px -10px 25px 0 $shadow_color;
+    }
+  }
+  // --
+  &-bottom {
+    box-shadow: 0px 10px 15px -5px $shadow_color;
+    &-sm {
+      box-shadow: 0px 10px 15px -10px $shadow_color;
+    }
+    &-lg {
+      box-shadow: 0px 10px 25px 0 $shadow_color;
+    }
+  }
+
+  //------------inset shadow (inside)---------------//
+
+  &-in {
+    box-shadow: inset 0px 0px 10px 0px $shadow_color;
+    &-l,
+    &-lg {
+      box-shadow: inset 0px 0px 28px 16px $shadow_color;
+    }
+    &-sm,
+    &-s {
+      box-shadow: inset 0px 0px 25px 0px $shadow_color;
+    }
+    // ----------
+    &-left {
+      box-shadow: inset 10px 0px 15px -10px $shadow_color;
+      &-lg {
+        box-shadow: inset 15px 0px 15px -5px $shadow_color;
+      }
+    }
+    &-right {
+      box-shadow: inset -10px 0px 15px -10px $shadow_color;
+      &-lg {
+        box-shadow: inset -15px 0px 15px -5px $shadow_color;
+      }
+    }
+    &-top {
+      box-shadow: inset 0px 10px 15px -10px $shadow_color;
+      &-lg {
+        box-shadow: inset 0px 15px 15px -5px $shadow_color;
+      }
+    }
+    &-bottom {
+      box-shadow: inset 0px -10px 15px -10px $shadow_color;
+      &-lg {
+        box-shadow: inset 0px -15px 15px -5px $shadow_color;
+      }
+    }
+  }
+}

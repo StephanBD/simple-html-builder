@@ -1,0 +1,23 @@
+- var themeName = "algo"
+
+include _mixins.pug
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title= title
+    link(rel="shortcut icon", href="", type="image/x-icon")
+    meta(name="keywords" charset="a11y, accessibility, html5, algo")
+    //- meta( name="theme-color" content="hsl(24.3, 97.4%, 54.3%)")
+    block head
+    link(rel="stylesheet" href="css/main.css")
+    
+  body.relative
+    block content
+      
+
+    block foot
+
+    block scripts
+    script(src="js/app.js") 

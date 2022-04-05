@@ -1,0 +1,104 @@
+mixin navBar(brackpoint= "md")
+  div(class="navbar-" + brackpoint)&attributes(attributes)
+
+    a LOGO 
+    button.navbar-toggle
+      .hamburger
+    .navbar-list 
+      block
+
+//- +navBar("sm")(class="btnxxxx")(id="toggleMenu")
+//-   li.btn Home
+//-   li about
+//-   li contact
+
+
+
+mixin navBar(brackpoint= "md")
+  div(class="navbar-" + brackpoint)&attributes(attributes)
+
+    a LOGO 
+    button.navbar-toggle
+      .hamburger
+    .navbar-list 
+      block
+
+//- +navBar("sm")(class="btnxxxx")(id="toggleMenu")
+//-   li.btn Home
+//-   li about
+//-   li contact
+
+
+
+//- +img
+mixin img(imgSize)
+  img(src="https://via.placeholder.com/"+ imgSize)&attributes(attributes)
+
+//- +img
+mixin figure(imgSize)
+  figure
+    img(src="https://via.placeholder.com/"+ imgSize)&attributes(attributes)
+    figcaption
+      block
+//- +class
+//- mixin class(xx)
+//-   span()&attributes(attributes)= 'class="' + xx + '"'
+
+
+
+//- class ---------
+mixin class(val)
+  p()&attributes(attributes)
+    |class="
+    strong= val
+    |"
+
+//- mixin class(xx)
+//-   |class="
+//-   = `${xx}`
+//-   |"
+
+
+//- Use
+//- +class("box-4")
+//- - var n = 0; 
+//- ul while n <= 20 
+//-   li= n++
+
+//- pre-----------
+mixin pre(val)
+  p.m-0 #{val}
+
+//- +pre('<div class="bg-green btn round t-light">')
+
+
+//- scaped -------------------------------
+mixin scape(code)
+  | #{code}
+
+
+
+//- code -------------------------------
+- var numCounter = 1;
+
+mixin tr(code)
+  tr
+    td.code-num=  numCounter++   
+    td: pre 
+      |#{code}
+      //- +scaped(code)
+      block
+
+mixin code
+  .code
+    table
+      block
+  - numCounter = 1;
+
+//- +code()
+//-   +tr("<span>algo</span>")
+//-   +tr("<span>algo2</span>")
+
+
+//- colors---------------------------------
+-var colors= ["pink-light","pink","pink-dark","red-light","red","red-dark","orange-light","orange","orange-dark","yellow-light","yellow","yellow-dark","brown-light","brown","brown-dark","green-light","green","green-dark","cyan-light","cyan","cyan-dark","blue-light","blue","blue-dark","purple-light","purple","purple-dark","success-light","success","success-dark","info-light","info","info-dark","warning-light","warning","warning-dark","danger-light","danger","danger-dark","accent-color-light","accent-color","accent-color-dark","gray-light","gray","gray-dark","primary-light","primary","primary-dark","secondary-light","secondary","secondary-dark","tertiary-light","tertiary","tertiary-dark","quaternary-light","quaternary","quaternary-dark","light","dark","link","white","black"]

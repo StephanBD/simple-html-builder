@@ -1,0 +1,41 @@
+// //-----------------------------------------------------//
+
+// .columns {
+//   -webkit-column-break-inside: avoid; // Chrome, Safari, Opera */
+//   page-break-inside: avoid; // Firefox */
+//   break-inside: avoid; // IE 10+ */
+
+//   overflow: visible; // fix for Firefox */
+//   column-gap: 0;
+
+//   & > * {
+//     -webkit-column-break-inside: avoid;
+//     page-break-inside: avoid;
+//     break-inside: avoid;
+//     break-inside: avoid-column;
+//     page-break-inside: avoid;
+//   }
+//   @for $i from 1 through 12 {
+//     &-#{$i} {
+//       @extend .columns;
+//       @include from($md) {
+//         -webkit-columns: $i;
+//         // -moz-columns: $i;
+//         // columns: $i;
+//         column-count: $i;
+//       }
+//     }
+//   }
+
+//   //-----------------------------------------------------//
+//   @include erasebreakpoints(display, initial);
+// }
+
+//-------------------column----------------------------------//
+
+.columns {
+  @extend %gap-0;
+  @include breakpointMaker(false) {
+    @include columns-;
+  }
+}

@@ -1,0 +1,100 @@
+extends ../pug_partials/_layout.pug
+//-=====================================
+
+
+block head
+	- var title = 'icons'
+	//- include layout/_seo.html
+	link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css") 
+	style. 
+
+
+//--------------------------------------
+
+block content
+	include ../pug_partials/_navbar.pug
+	//- .custom-cm 
+	//- 	.custom-cs__item item 1
+	//- 	.custom-cs__item item 3
+	//- 	.custom-cs__item item 2
+
+	.content-m.px
+
+		//- .bg-green.p
+		//- 	.w-50.bg-red.mb xxxxx
+		//- 	.w-50.bg-orange.ml.mb xxxxx
+		//- 	.w-50.bg-orange.ml.mb xxxxx
+		//- 	.w-50.bg-orange.ml.mb xxxxx
+		//- 	.w-50.bg-red.mb xxxxx
+		//- 	.w-50.bg-orange.ml.mb xxxxx
+		//- 	.w-50.bg-orange.ml.mb xxxxx
+		//- 	.w-50.bg-orange.ml.mb xxxxx
+			//- .cell
+			//- 	input(type="text" value="zzzz").cell-input
+			//- 	span.close-btn x
+		//- textarea#copy.textarea(name="", cols="30", rows="10" class="b b-red") 
+		h1 Builder
+		//-------- 
+		//- #drag(draggable="true").btn.bg-orange P
+		//- .cell bg-red 
+		//- 	span.close-btn x
+
+	//- .move-me.preview(draggable="true" style="pointer-events: none;").absolute.top.left 
+	//- -------------------------------------------
+	//- button.btn-copy.bg-green-light-t btn copy
+	#dropzone.bg-pink.p
+		.bg-cyan#algo-1 xxxxx  zzzzzzzzz
+		//- 	.bg-green.h-100#algo-2.mt-1.mb-2.mr-5
+		//- 	span.bg-white lorem  
+		//- -------------form ----------------------------------
+	.modal-draggable(autocomplete="off").bg-white.shadow-sm.hide
+		div.relative
+			#drag-modal.flex.ai-center.jc-flex-start
+				.dot.bg-cyan-dark.mx-1
+				.dot.bg-cyan-dark.mx-1
+				.dot.bg-cyan-dark.mx-1
+				//- .absolute.top.right.flex.w-max-content
+				.btn.t-black#father-btn(title="select father").ml-a: i(class="fas fa-sign-in-alt" style="transform:rotateZ(270deg);" )
+				.btn.t-black#arrow-up-btn(title="move up"): i(class="fas fa-arrow-up")
+				.btn.t-black#arrow-down-btn(title="move down"): i(class="fas fa-arrow-down")
+				//- ---
+				.btn.bg-orange.t-white#switchBox(title="html-code"): i(class="fab fa-html5")
+				.btn.bg-green-light.t-white#copy-btn(title="duplicate"): i(class="fas fa-copy")
+				.btn.bg-info.t-white#draggable-btn(title="drag"): i(class="fas fa-arrows-alt")
+				.btn.bg-red.t-white#delete-btn(title="delete"): i(class="fas fa-trash-alt")
+
+		//- -----------
+		.flex.b-bottom-1.b-cyan-light
+			button.btn-md.btn-tab classes
+			button.btn-md.btn-tab.active tags
+			button.btn-md.btn-tab components
+			button.btn-md.btn-tab.btn-generate-code code
+		//- -----------
+		.p-3.relative#classes.tabcontent 
+			p tag name: 
+				span#tagname.mx name
+			.autocomplete
+				input(type="text"  name="addClass" placeholder="Add class")#myInput.b.m-0
+			p classes
+			#classes-control.my.flex.flex-gap-1
+		.p-3#tags.tabcontent  
+		//---------- 
+		.p-3#components.tabcontent  
+		//---------- 
+		.p-3#code.tabcontent 
+			button.bg-info.t-light.btn-copy-code
+				i.far.fa-clipboard.mr
+				| copy code 			
+			textarea#copy.textarea(name="", cols="30", rows="10" class="b b-red" spellcheck="false") 
+
+			//- input#input-class(name="class" placeholder="class" type="text").bg-white
+
+
+
+
+//--------------------------------------
+block foot
+
+
+//--------------------------------------
+block scripts

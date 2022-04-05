@@ -1,0 +1,84 @@
+// image tag as background -------------------
+
+// .img-container {
+//   @include img-container;
+// }
+// .img-bg {
+//   @include img-bg;
+// }
+
+.img-container {
+  @include img-container;
+
+  @at-root & > img:nth-of-type(1),
+    .img-bg {
+    @include img-bg;
+  }
+  // hover -------------------------------
+  $this: &;
+  &-hover {
+    @extend #{$this};
+    // @include img-relative;
+
+    &:hover .img-bg {
+      top: 0%;
+      left: 0%;
+      height: 100%;
+      width: 100%;
+    }
+    @at-root & > img:nth-of-type(1),
+      & .img-bg {
+      width: 120%;
+      height: 120%;
+      top: -10%;
+      left: -10%;
+      transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    }
+  }
+}
+
+// variable as background image -------------------------
+// the url is relative to where is located the css file
+.var-img,
+.img-var {
+  // @include bg-var;
+  // --url: url();
+  background: var(--url);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+// example
+// style="--url: url(https://img.jpg)"
+
+//-------------------image container----------------------------------//
+// .gallery,
+// .gall {
+//   @each $key, $value in $numbers {
+//     &-#{$key} {
+//       // text-align: center;
+//       & > img {
+//         height: #{$key}rem;
+//       }
+//     }
+//   }
+// }
+
+//-------------------polaroid style----------------------------------//
+img.polaroid {
+  background: #000; //Change this to a background image or remove*/
+  border: solid #fff;
+  border-width: 6px 6px 20px 6px;
+  box-shadow: 1px 1px 5px #333; // Standard blur at 5px. Increase for more depth */
+  -webkit-box-shadow: 1px 1px 5px #333;
+  -moz-box-shadow: 1px 1px 5px #333;
+  height: 200px; //Set to height of your image or desired div*/
+  width: 200px; //Set to width of your image or desired div*/
+}
+
+//-------------------shape outside----------------------------------//
+// .outside {
+//   float: left;
+//   shape-outside:url("xxx");
+//   shape-margin: $padding;
+// }

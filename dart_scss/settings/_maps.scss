@@ -1,0 +1,258 @@
+// sizes */
+$sizes: (100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200);
+
+// direction */
+$x: (left, right);
+$y: (top, bottom);
+
+$directions: (
+  left: l,
+  right: r,
+  top: t,
+  bottom: b,
+);
+
+$widthContent: (fit-content, max-content, min-content);
+
+$align: (left, center, right);
+// $directions: (left, right, top, bottom); */
+
+// aspect-ratio */
+$aspect-ratio: (
+  3: 4,
+  2: 3,
+  10: 16,
+  9: 16,
+  1: 1,
+);
+
+// multipliers */
+$multipliers: (
+  2: 2,
+  3: 3,
+);
+// number of columns (grid) */
+$numbers: (
+  1: uno,
+  2: two,
+  3: three,
+  4: four,
+  5: five,
+  6: six,
+  7: seven,
+  8: eight,
+  9: nine,
+  10: ten,
+  11: eleven,
+  12: twelve,
+);
+
+// letter-spacing
+$letter-spacing: (normal, initial, inherit, unset);
+
+$number: 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700,
+  750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200;
+
+//==========================grid & flex==========================*/
+$align-content: (
+  center,
+  stretch,
+  flex-start,
+  flex-end,
+  space-around,
+  space-between
+);
+$align-items: (start, end, center, stretch, flex-start, flex-end, baseline);
+$justify-items: (start, end, center, stretch, flex-end, flex-start);
+$justify-content: (
+  start,
+  end,
+  center,
+  stretch,
+  space-around,
+  space-between,
+  space-evenly,
+  flex-end,
+  flex-start
+);
+
+$flex-direction: (row, row-reverse, column, column-reverse);
+$clear: (none, left, right, both, inline-start, inline-end, inherit);
+
+$order: (-1, 0, 1);
+$align-self: (
+  auto,
+  flex-start,
+  flex-start,
+  flex-end,
+  center,
+  baseline,
+  stretch
+);
+
+$flex-wrap: (nowrap, wrap, wrap-reverse);
+$flex-flow: (
+  row,
+  row-reverse,
+  column,
+  column-reverse,
+  nowrap,
+  wrap,
+  wrap-reverse
+);
+
+// object-fit
+$object-fit: (fill, contain, cover, none, scale-down);
+
+// overflow
+$overflow: (visible, hidden, scroll, auto, inherit);
+
+// visibility
+$visibility: (visible, hidden, collapse);
+// display */
+$display: (block, inline, inline-block);
+
+// position */
+$position: absolute, fixed, relative, static, sticky;
+
+// default properties */
+$default: inherit, unset, initial;
+
+// grid auto flow
+$grid-auto-flow: (row, column, dense, row dense, column dense);
+
+//  transform-origin
+$transform-origin: (left, center, right, top, bottom);
+
+// border styles */
+$list-style: (
+  disc,
+  circle,
+  square,
+  decimal,
+  decimal-leading-zero,
+  lower-roman,
+  upper-roman,
+  lower-greek,
+  lower-latin,
+  upper-latin,
+  armenian,
+  georgian,
+  lower-alpha,
+  upper-alpha
+);
+// border styles */
+$border-style: (
+  dotted,
+  dashed,
+  solid,
+  double,
+  groove,
+  ridge,
+  inset,
+  outset,
+  none,
+  hidden,
+  double
+);
+
+// text-transform
+$text-transform: (capitalize, uppercase, lowercase);
+
+// text-decoration
+$text-decoration: (underline, overline, line-through, blink, none);
+
+//------------------breakpoints----------------------------------*/
+$breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+);
+
+//------------------font weight----------------------------------*/
+$font-weight: lighter, normal, bold, bolder;
+//------------------font size----------------------------------*/
+$nameSize: (
+  small: sm,
+  normal: md,
+  big: bg,
+  large: lg,
+  extra-large: xl,
+);
+//------------------font size----------------------------------*/
+$fontSizes: (
+  sm: 1rem * 0.8,
+  md: 1rem,
+  lg: 1rem * 1.3,
+  xl: 1rem * 1.6,
+);
+
+//------------------font-style----------------------------------*/
+$font-style: (normal, italic, oblique);
+//------------------z-index----------------------------------*/
+$zIndexs: (
+  back: $z-back_-10,
+  zero: 0,
+  normal: $z-normal_1,
+  tooltip: $z-tooltip_10,
+  fixed: $z-fixed_100,
+  modal: $z-modal_1000,
+);
+
+// --------- this colors do not have -light and -dark version
+$colorStatic: (
+  light: $white,
+  dark: $dark,
+  link: $link,
+  // ----
+  white: $white,
+  // gray-light: $gray-light,
+  // gray: $gray,
+  // gray-dark: $gray-dark,
+  black: $black,
+  // ----
+);
+// -------------- adding brand colors
+$colors: map-merge($colors, $brandColors);
+
+// -------------- creating light and dark colors
+@function IfIndexColor($text, $substring, $compare: 2) {
+  @if str-index(#{$text}, #{$substring}) != null {
+    @return str-index($text, $substring) > $compare;
+  } @else {
+    @return false;
+  }
+}
+
+// $colors: map-merge($colors, $brandColors);
+
+@each $key, $value in $colors {
+  @if IfIndexColor($key, -light) == false and IfIndexColor($key, -dark) == false
+  {
+    @if map-has-key($colors, #{$key}-light) != true {
+      $newLight: (#{$key}-light: lighten($value, $darken));
+      $colors: map-merge($colors, $newLight);
+    }
+
+    @if map-has-key($colors, #{$key}-dark) != true {
+      $newDark: (#{$key}-dark: darken($value, $darken));
+      $colors: map-merge($colors, $newDark);
+    }
+  }
+
+  // .h1 {
+  //     name: #{$key}-light;
+  //     color: IfIndexColor($key, -light) == false ;
+  //     margin:IfIndexColor($key, -dark) == false;
+  //     has-color: map-has-key($colors, #{key}-light) ;
+  //     color: map-has-key($colors, #{key}-light) != true;
+  //     color: map-has-key($colors, #{key}-dark) != false;
+  // }
+}
+// merge all
+$colors: map-merge($colors, $colorStatic);
+
+// animations --------------------------------
+$animation-fill-mode: forwards, backwards, both, none;
+$animation-iteration-count: infinite;

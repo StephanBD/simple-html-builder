@@ -1,0 +1,93 @@
+//------------------text color----------------------------------*/
+@mixin t-($color, $hover: false) {
+  @if $hover {
+    &:hover {
+      color: map-get($colors, $color);
+      color: Var(#{$color});
+    }
+  } @else {
+    color: map-get($colors, $color);
+    color: Var(#{$color});
+  }
+}
+
+//   .t {
+//       @include t-(primary, true);
+//   }
+// // output-------
+//   .t:hover {
+//     color: var(--primary);
+//   }
+
+//------------------backgroundcolor----------------------------------*/
+@mixin bg-($color, $hover: false, $text: none) {
+  @if $color == 0 {
+    background-color: transparent;
+  } @else {
+    background-color: map-get($colors, $color);
+    background-color: Var(#{$color});
+  }
+
+  @if $hover {
+    &:hover {
+      @include bg-($hover);
+      //   background-color: $hover;
+    }
+  }
+  @if $text != none {
+    @include t-($text);
+  }
+}
+
+//   .bg {
+//         @include bg-(0, true);
+//     }
+// // output-------
+//   .bg {
+//   background-color: transparent;
+//   }
+
+//------------------full size----------------------------------*/
+
+@mixin full-($type) {
+  @if $type == v {
+    width: 100vw;
+    min-width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+  } @else if $type == vw {
+    width: 100vw;
+    min-width: 100vw;
+  } @else if $type == vh {
+    height: 100vh;
+    min-height: 100vh;
+  } @else if $type == h {
+    height: 100%;
+    min-height: 100%;
+  } @else if $type == w {
+    width: 100%;
+    min-width: 100%;
+  } @else if $type == a {
+    width: auto;
+    height: auto;
+  } @else {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+//-------------------container img----------------------------------//
+@mixin img-container() {
+  overflow: hidden;
+  position: relative;
+  z-index: $z-normal_1;
+  z-index: var(--z-normal);
+  & > img:first-child {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,135 @@
+extends ../pug_partials/_layout.pug
+//-=====================================
+
+
+block head
+	- var title = 'title'
+	//- include ../pug_partials/_head.pug
+	//- include layout/_seo.html
+	link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css") 
+
+//--------------------------------------
+
+block content
+	include ../pug_partials/_navbar.pug
+
+
+	.content-m.px-md
+		h1 buttons
+		button button tag 
+		br
+		div.btn btn class 
+		br
+		input(type="submit", value="Submit input")
+		hr
+
+		h2 background color 
+		p bg-(color name)
+		.btn(class="round bg-" + "cyan") button
+		+class("bg-cyan")
+
+		.btn(class="round bg-" + "cyan" + "-hover") button
+		+class("bg-cyan-hover")
+
+		.btn(class="round hover:bg-" + "cyan" ) button
+		+class("hover:bg-cyan")
+
+		hr
+		h2 padding sizes 	
+		.bg-info.btn button
+		+class("btn")
+		.bg-info.btn-sm button
+		+class("btn-sm")
+		.bg-info.btn-md button
+		+class("btn-md")
+		.bg-info.btn-lg button
+		+class("btn-lg")
+		.bg-info.btn-xl button
+		+class("btn-xl")
+
+
+		hr
+		h2 border
+
+		.b-1.b-info.btn button
+		+class("b-2 b-info btn")
+		.b-3.b-info.btn button
+		+class("b-3 b-info btn")
+		.b-5.b-info.btn button
+		+class("b-5 b-info btn")
+		.b-10.b-info.btn.b-dashed button
+		+class("b-10 b-info b-dashed btn")
+		.b-10.b-info.btn.b-dotted button
+		+class("b-10 b-info b-dotted btn")
+		.b-10.b-info.btn.b-double button
+		+class("b-10 b-info b-double btn")
+
+
+
+
+		hr
+
+		h2 round	
+		.bg-orange.btn.r button
+		+class("round btn bg-orange")
+		.bg-orange.btn.r-2 button
+		+class("round-3 btn-xl bg-orange")
+		.b-2.b-orange.btn.r-circle button
+		+class("round-circle btn-xl bg-orange")
+		.b-5.b-orange.btn.r-3 button
+		+class("b-10 b-orange btn round-3")
+		hr
+
+		h2 icons
+		p icon (i)
+		i.fas.fa-paper-plane 
+		+class("fas fa-paper-plane")
+		p text (span)
+		span.btn-ml lorem
+		+class("btn-ml")
+
+		//- pre 
+		//- 	+pre('<div class="bg-green btn round t-light">')
+		//- 	+pre('   <i class="fas fa-paper-plane"></i>')
+		//- 	+pre('   <span class="btn-ml">lorem</span>')
+		//- 	+pre('</div>')
+
+
+		.bg-green.btn.r.t-light 
+			i.fas.fa-paper-plane
+		hr.b-0.mb
+		.bg-green.btn.r.t-light
+			i.fas.fa-paper-plane
+			span.btn-ml btn-ml
+		+class("round btn bg-green t-light")
+
+
+		hr
+
+		h2 sizes
+
+		.bg-blue.btn.r.t-light
+			span.btn-mr default
+			i.fas.fa-paper-plane
+		+class("round btn bg-blue t-light")
+		.bg-blue.btn.r.t-light.t-1
+			span.btn-mr t-1
+			i.fas.fa-paper-plane
+		+class("round btn bg-blue t-light t-1")
+		.bg-blue.btn.r.t-light.t-5
+			span.btn-mr t-5
+			i.fas.fa-paper-plane
+		+class("round btn bg-blue t-light t-5")
+		.bg-blue.btn.r.t-light.t-8
+			span.btn-mr t-8
+			i.fas.fa-paper-plane
+		+class("round btn bg-blue t-light t-8")
+
+
+
+//--------------------------------------
+block foot
+	//- include pug_partials/_footer.pug
+
+//--------------------------------------
+block scripts

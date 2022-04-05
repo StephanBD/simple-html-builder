@@ -1,0 +1,1128 @@
+//==========================media==========================//
+@mixin from($breakpoint: $globalBP) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin to($breakpoint: $globalBP) {
+  @media screen and (max-width: ($breakpoint - 1)) {
+    @content;
+  }
+}
+@mixin fromto($from: $globalBP, $to: $globalBP) {
+  @media (min-width: $from) and (max-width: $to) {
+    @content;
+  }
+}
+//------------------text color----------------------------------
+@mixin t-($color, $hover: false) {
+  @if $hover {
+    &:hover {
+      color: map-get($colors, $color);
+      color: Var(#{$color});
+    }
+  } @else {
+    color: map-get($colors, $color);
+    color: Var(#{$color});
+  }
+}
+
+// .t {
+//     @include t-(primary, true);
+// }
+// output-------
+// .t:hover {
+//   color: var(--primary);
+// }
+
+//------------------backgroundcolor----------------------------------*/
+@mixin bg-($color, $opacity: false, $hover: false) {
+  @if $color == 0 {
+    background-color: transparent;
+  } @else {
+    @if $opacity {
+      background-color: rgba(Color($colors, $opacity));
+    } @else {
+      background-color: map-get($colors, $color);
+      background-color: Var(#{$color});
+    }
+  }
+
+  @if $hover {
+    &:hover {
+      @include bg-($hover);
+    }
+  }
+  // @if $text {
+  //   @include t-($text);
+  // }
+}
+
+//   .bg {
+//         @include bg-(0, true);
+//     }
+// output-------
+//   .bg {
+//   background-color: transparent;
+//   }
+
+//------------------full size----------------------------------*/
+
+@mixin full-($type) {
+  @if $type == v {
+    width: 100vw;
+    min-width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+  } @else if $type == vw {
+    width: 100vw;
+    min-width: 100vw;
+  } @else if $type == vh {
+    height: 100vh;
+    min-height: 100vh;
+  } @else if $type == h {
+    height: 100%;
+    min-height: 100%;
+  } @else if $type == w {
+    width: 100%;
+    min-width: 100%;
+  } @else if $type == a {
+    width: auto;
+    height: auto;
+  } @else {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// .full {
+//   @include full-(v);
+// }
+
+// output
+
+// .full {
+//   width: 100vw;
+//   min-width: 100vw;
+//   height: 100vh;
+//   min-height: 100vh;
+// }
+
+// @mixin p-($t: null, $r: null,$b: null, $l: null) {
+//   margin: {
+//       top: $t;
+//       right: $r;
+//       bottom: $b;
+//       left: $l;
+//   }
+// }
+
+// // Use case
+// .wrapper {
+//   @include p-(null, 400px);
+// }
+
+//------------------margin----------------------------------*/
+@mixin m-($value: $margin) {
+  margin: $value;
+}
+@mixin mx-($value: $margin, $value2: $value) {
+  margin-right: $value;
+  margin-left: $value2;
+}
+@mixin mr-($value: $margin) {
+  margin-right: $value;
+}
+@mixin ml-($value: $margin) {
+  margin-left: $value;
+}
+@mixin my-($value: $margin, $value2: $value) {
+  margin-top: $value;
+  margin-bottom: $value2;
+}
+@mixin mt-($value: $margin) {
+  margin-top: $value;
+}
+@mixin mb-($value: $margin) {
+  margin-bottom: $value;
+}
+
+//------------------padding----------------------------------*/
+@mixin p-($value: $padding) {
+  padding: $value;
+}
+@mixin px-($value: $padding, $value2: $value) {
+  padding-right: $value;
+  padding-left: $value2;
+}
+@mixin pr-($value: $padding) {
+  padding-right: $value;
+}
+@mixin pl-($value: $padding) {
+  padding-left: $value;
+}
+@mixin py-($value: $padding, $value2: $value) {
+  padding-top: $value;
+  padding-bottom: $value2;
+}
+@mixin pt-($value: $padding) {
+  padding-top: $value;
+}
+@mixin pb-($value: $padding) {
+  padding-bottom: $value;
+}
+
+//-------------------font----------------------------------// zzzz
+// @mixin font(
+//   1rem: none,
+//   $font-weight: none,
+//   $font-family: none,
+//   $font-style: none,
+//   $font-variant: none,
+//   $line-height: none
+// ) {
+//   @if $font-style != none {
+//     font-style: $font-style;
+//     //normal, italic, oblique, initial, inherit
+//   }
+//   @if $font-variant != none {
+//     font-variant: $font-variant;
+//     // normal, small-caps, initial, inherit
+//   }
+//   @if $font-weight != none {
+//     font-weight: $font-weight;
+//     // normal, bold, bolder, lighter, number, initial, inherit
+//   }
+//   @if 1rem != none {
+//     font-size: 1rem;
+//     // font-size:medium, xx-small, x-small, small, large, x-large, xx-large, smaller, larger, length, initial, inherit
+//   }
+//   @if $line-height != none {
+//     line-height: $line-height;
+//     // normal, number, length, initial, inherit
+//   }
+//   @if $font-family != none {
+//     font-family: $font-family;
+//     // family-name, generic-family, initial, inherit
+//   }
+//   // font
+//   // font: : initial;
+// }
+
+//-------------------content----------------------------------// zzz
+// @mixin content {
+//   @include from($sm) {
+//     max-width: 540px;
+//   }
+//   @include from($md) {
+//     max-width: 720px;
+//   }
+//   @include from($lg) {
+//     max-width: 960px;
+//   }
+//   @include from($xl) {
+//     max-width: 1024px;
+//   }
+// }
+
+//-------------------container img----------------------------------//
+@mixin img-bg($image-src) {
+  background-image: url($image-src);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+// use case
+
+// .hero {
+//   @include cover-background("../image/main.png")
+// }
+//-------------------container img----------------------------------//
+
+@mixin img-relative() {
+  overflow: hidden;
+  position: relative;
+  z-index: $z-normal_1;
+  z-index: var(--z-normal);
+  // ------
+}
+@mixin img-bg {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  object-fit: cover;
+}
+
+@mixin img-container() {
+  @include img-relative;
+  & > img:nth-of-type(1) {
+    @include img-bg;
+  }
+}
+
+// .container-img {
+// @include container-img;
+// }
+
+//-------------------crop----------------------------------//
+@mixin crop() {
+  position: relative;
+  overflow: hidden;
+}
+//-------------------crop----------------------------------//
+@mixin odd() {
+  &:nth-child(odd) {
+    @content;
+  }
+}
+@mixin even() {
+  &:nth-child(even) {
+    @content;
+  }
+}
+//-------------------carousel hover effect----------------------------------//
+@mixin carousel() {
+  &:hover > * {
+    opacity: 0.3;
+  }
+  &:hover > *:hover {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  & > * {
+    // transform-origin: center left;
+    transition: 450ms;
+  }
+}
+
+//-------------------card----------------------------------//
+@mixin img-url($var) {
+  background: url($var);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+// .img-url {
+//   @include container-img("aqui.com");
+// }
+
+//-------------------card----------------------------------//
+@mixin card-f($flex: false) {
+  width: 100%;
+  overflow: hidden;
+  border-collapse: collapse;
+  @content;
+  @if $flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+//-------------------no select text----------------------------------//
+@mixin noSelectText {
+  -webkit-touch-callout: none;
+  //  iOS Safari */
+  -webkit-user-select: none;
+  //  Safari */
+  -khtml-user-select: none;
+  //  Konqueror HTML */
+  -moz-user-select: none;
+  //  Old versions of Firefox */
+  -ms-user-select: none;
+  //  Internet Explorer/Edge */
+  user-select: none;
+  //  Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+//-------------------pseudo----------------------------------//
+@mixin pseudo($position: absolute, $content: "", $display: block) {
+  content: $content;
+  display: $display;
+  @content;
+  @if $display {
+    position: $position;
+  }
+}
+
+//-------------------before----//
+@mixin before($position: absolute, $content: "", $display: block) {
+  &::before {
+    @include pseudo($position, $content, $display) {
+      @content;
+    }
+  }
+}
+
+//-------------------after-----//
+@mixin after($position: absolute, $content: "", $display: block) {
+  &::after {
+    @include pseudo($position, $content, $display) {
+      @content;
+    }
+  }
+}
+//-------------------Responsive ratio----------------------------------//
+// @mixin responsive-ratio($x, $y, $pseudo: false) {
+//   $padding: unquote(($y / $x) * 100 + "%");
+//   @if $pseudo {
+//     &:before {
+//       @include pseudo($pos: relative);
+//       width: 100%;
+//       padding-top: $padding;
+//     }
+//   } @else {
+//     padding-top: $padding;
+//   }
+// }
+
+// .ratio-16-9 {
+//   @include responsive-ratio(16, 9);
+// }
+//-------------------triangles----------------------------------//
+@mixin css-triangle(
+  $color,
+  $direction,
+  $size: 6px,
+  $position: absolute,
+  $round: false
+) {
+  @include pseudo($position: $position);
+  width: 0;
+  height: 0;
+  @if $round {
+    border-radius: 3px;
+  }
+  @if $direction == down {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+    margin-top: 0 - round(math.div($size, 2.5));
+  } @else if $direction == up {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+    margin-bottom: 0 - round(math.div($size, 2.5));
+  } @else if $direction == right {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    margin-right: -$size;
+  } @else if $direction == left {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    margin-left: -$size;
+  }
+}
+
+//-------------------placeholder----------------------------------//
+@mixin placeholder() {
+  &::placeholder {
+    @content;
+  }
+}
+
+//-------------------Truncate----------------------------------//
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+//-------------------columns----------------------------------//
+@mixin columns- {
+  -webkit-column-break-inside: avoid;
+  //  Chrome, Safari, Opera */
+  page-break-inside: avoid;
+  //  Firefox */
+  break-inside: avoid;
+  //  IE 10+ */
+  overflow: visible;
+  //  fix for Firefox */
+  column-gap: calc(var(--gap-col) * 2px);
+
+  & > * {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+  }
+}
+
+// .columns {
+// @include breakpointMaker(false) {
+//  @include columns- ;
+// }
+// }
+
+//-------------------flex----------------------------------//
+@mixin flex-dcia(
+  $flex-direction: row,
+  $justify-content: space-between,
+  $align-items: false,
+  $justify-items: false,
+  $align-content: false,
+  $flex-wrap: wrap,
+  $flex: flex
+) {
+  display: $flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  @if $align-items {
+    align-items: $align-items;
+  }
+  @if $justify-items {
+    justify-items: $justify-items;
+  }
+  @if $align-content {
+    align-content: $align-content;
+  }
+  flex-wrap: $flex-wrap;
+  @content;
+}
+@mixin flex-item(
+  $order: initial,
+  $flex-basis: content,
+  // $flex: auto,
+  $flex-grow: 0,
+  $flex-shrink: 1
+) {
+  order: $order;
+  flex-basis: $flex-basis;
+  // flex: $flex;
+  flex-grow: $flex-grow;
+  flex-shrink: $flex-shrink;
+  @content;
+}
+//-------------------flex child spand----------------------------------//
+// @mixin flex-12($key, $columns: 12, $gap: 0) {
+
+//   @if $key == auto {
+//     flex-basis: 100%;
+//     flex: 1;
+//   } @else {
+//     $value: ((Div(100%, $columns)) * $key);
+
+//     $valueGap1: calc(#{$value} - var(--gap ,#{$gap + 0px}) );
+
+//     flex: 0 0   $value; // old browsers
+//     -ms-flex: 0 0  $valueGap1;
+//     flex: 0 0  $valueGap1;
+//     max-width:  $valueGap1;
+
+// //   } @else {
+// //     $value: ((Div(100%, $columns)) * $key);
+// //     -ms-flex: 0 0 $value;
+// //     flex: 0 0 $value;
+// //     max-width: $value;
+//   }
+// }
+
+@mixin flex-12($key, $columns: 12, $gap: 0) {
+  @if $key == auto {
+    flex-basis: 100%;
+    flex: 1;
+  } @else {
+    $value: Div(100%, $columns) * $key;
+    width: 100%;
+    max-width: calc(#{$value} - ((var(--gap-col-flex, 0) * 2px) / 1.3));
+    // @include mx-(var(--gap, 0));
+  }
+}
+
+// @mixin flex-12($key, $columns: 12, $gap: false) {
+
+//   @if $key == auto {
+//     flex-basis: 100%;
+//     flex: 1;
+//   } @else if $gap {
+//     $value: ((math.div(100%, $columns)) * $key);
+//     $valueGap1: calc(#{$value} - #{$gap});
+//     -ms-flex: 0 0 $valueGap1;
+//     flex: 0 0 $valueGap1;
+//     max-width: $valueGap1;
+//   } @else {
+//     $value: ((math.div(100%, $columns)) * $key);
+//     -ms-flex: 0 0 $value;
+//     flex: 0 0 $value;
+//     max-width: $value;
+//   }
+// }
+//-------------------mixins----------------------------------//
+@mixin grid-crjaj(
+  $columns: 1fr,
+  $rows: none,
+  $justify-content: initial,
+  $align-items: initial,
+  $justify-items: initial,
+  $gap: 0
+) {
+  display: grid;
+  gap: 0;
+  grid-template-columns: $columns;
+  @if $rows != none {
+    grid-template-rows: $rows;
+  }
+  gap: $gap;
+  justify-content: $justify-content;
+  justify-items: $justify-items;
+  align-items: $align-items;
+}
+
+@mixin grid_item(
+  $justify-self,
+  $align-self,
+  $grid-column,
+  $grid-row,
+  $grid-row-end: 1,
+  $grid-row-start: 1,
+  $grid-column-start: 1,
+  $grid-column-end: 1
+) {
+  justify-self: $justify-self;
+  align-self: $align-self;
+
+  grid-column: $grid-column;
+  grid-row: $grid-row;
+
+  grid-column-end: $grid-column-end;
+  grid-row-end: $grid-row-end;
+  grid-column-start: $grid-column-start;
+  grid-row-start: $grid-row-start;
+}
+
+//------------------------aside------------------------// zzz
+@mixin aside() {
+  // position: static;
+  // @include from($md) {
+  width: $aside-width;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1000;
+  // height: 100%;
+  transform: translateX(-100%);
+  // }
+}
+
+//-------------------Buttons----------------------------------//
+@mixin btn($color: initial, $width: initial, $height: initial) {
+  background-color: inherit;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  @if $width != initial {
+    display: block;
+
+    padding-left: $width;
+    padding-right: $width;
+    @if $height != initial {
+      padding-top: $height;
+      padding-bottom: $height;
+    } @else {
+      padding-top: $width;
+      padding-bottom: $width;
+    }
+  }
+
+  // letter-spacing: 0.1rem;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+}
+
+//-------------------absolute----------------------------------//
+@mixin absolute($where: topLeftRightBottom) {
+  position: absolute;
+  // width: fit-content;
+
+  @if $where == top {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  } @else if $where == bottom {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  } @else if $where == left {
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+  } @else if $where == right {
+    top: 50%;
+    left: 100%;
+    transform: translate(-100%, -50%);
+  } @else if $where == center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else {
+    top: 0;
+    left: 0;
+  }
+}
+
+//-----------------------sticky-----------------------// zzz
+// @mixin sticky($where) {
+//   position: -webkit-sticky;
+//   position: sticky;
+//   @if $where == top {
+//     top: 0;
+//   }
+//   @if $where == bottom {
+//     top: 100%;
+//     transform: translate(0, -100%);
+//   }
+// }
+
+// image tag as background-----------------------------------
+// @mixin container-img() {
+//   overflow: hidden;
+//   position: relative;
+//   z-index: var(--z-normal);
+//   & > img:first-child {
+//     pointer-events: none;
+//     position: absolute;
+//     // top: 0;
+//     // left: 0;
+//     // right: 0;
+//     // bottom: 0;
+//     width: 100%;
+//     height: 100%;
+//     z-index: -1;
+//     object-fit: cover;
+//   }
+// }
+//-------------------var as url image----------------------------------//
+// @mixin bg-var($url: "") {
+//   --url: url(#{$url});
+//   background: var(--url);
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+// }
+
+//-------------------round corners----------------------------------//
+@mixin round-corners(
+  $top-left: 0,
+  $top-right: 0,
+  $bottom-right: 0,
+  $bottom-left: 0
+) {
+  border-top-left-radius: $top-left;
+  border-top-right-radius: $top-right;
+  border-bottom-left-radius: $bottom-right;
+  border-bottom-right-radius: $bottom-left;
+}
+
+//-------------------square----------------------------------//
+@mixin square($side) {
+  width: $side;
+  height: $side;
+}
+// usage:
+// @include square(2rem);
+
+//-------------------badge----------------------------------//zzz
+// this require that the father to have position:relative
+// @mixin badge($background: white, $color: initial) {
+//   background-color: $background;
+//   color: $color;
+
+//   position: absolute;
+//   display: block;
+//   top: 0;
+//   right: 0;
+
+//   text-align: center;
+//   font-size: 11px;
+//   border-radius: 30%;
+//   padding: 3px;
+//   min-width: 10px;
+//   min-height: min-content;
+// }
+
+//  background 2 colors ------------------------------
+@mixin bg-2-colors(
+  $directionDeg: 0deg,
+  $first-color: black,
+  $second-color: white,
+  $background: initial
+) {
+  background: $background;
+  background: linear-gradient($directionDeg, $first-color, $second-color);
+}
+//-------------------childs gap----------------------------------// zzzz
+// @mixin childs-gap($gap-size: 0, $direction: "all") {
+//   @if $direction == "right left" or $direction == "left right" {
+//     margin-left: $margin * $gap-size;
+//     margin-right: $margin * $gap-size;
+//   } @else if $direction == "top bottom" or $direction == "bottom top" {
+//     margin-top: $margin * $gap-size;
+//     margin-bottom: $margin * $gap-size;
+//   } @else if $direction == "all" {
+//     margin: $margin * $gap-size;
+//   } @else {
+//     margin-#{$direction}: $margin * $gap-size;
+//   }
+// }
+
+// usage:
+// @include childs-gap(0.5, "left right");
+
+//---------------- gap between childs  -------------------------//
+//----  row  -----//
+@mixin gap-row($gap-size: $margin) {
+  & > *:not(:first-child) {
+    margin-left: $gap-size;
+  }
+  & > *:not(:last-child) {
+    margin-right: $gap-size;
+  }
+}
+
+//----  column  -----//
+@mixin gap-col($gap-size: $margin) {
+  & > *:not(:first-child) {
+    margin-top: $gap-size;
+  }
+  & > *:not(:last-child) {
+    margin-bottom: $gap-size;
+  }
+}
+
+//-------------------multiplier----------------------------------//
+@mixin increase($property, $key, $from: 0, $to: 10) {
+  @for $value from $from through $to {
+    &-#{$value} {
+      #{$property}: $key * $value;
+    }
+  }
+}
+// example
+//  @include increase(margin-left, 1rem, 2 ,10);
+
+//-------------------aspect-ratio----------------------------------//
+
+@mixin ratio($ratio1, $ratio2) {
+  // margin-bottom: 100% * math.div($ratio2, $ratio1);
+  // margin-bottom: calc(100% * #{$ratio2} / #{$ratio1});
+  padding-bottom: 100% * math.div($ratio2, $ratio1);
+  padding-bottom: calc(100% * #{$ratio2} / #{$ratio1});
+  // aspect-ratio: #{$ratio1}/$ratio2 ;
+}
+
+//-------------------erase beackpoints----------------------------------//
+// this create
+@mixin erasebreakpoints($property, $value) {
+  $nombre: str-replace(&, ".");
+  $nombre: str-replace($nombre, "#");
+  $breakpoints: (
+    xl: $xl,
+    lg: $lg,
+    md: $md,
+    sm: $sm,
+  );
+  @each $key, $point in $breakpoints {
+    @at-root .#{$key}\:#{$nombre} {
+      @include to($point) {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
+// .h1{
+//   @include erasebreakpoints(color, none)
+// }
+
+// @media screen and (max-width: 575px) {
+//   .sm\:h1 {
+//     color: none;
+//   }
+// }
+// -----------------------------------------------------------
+
+@mixin breakpointMaker($breakpointMaker: $breakpointMaker) {
+  @content;
+
+  @if $breakpointMaker {
+    $howmany: length($breakpoints);
+    $nombre: erase(separateTwoSelectors(1), ".");
+    $nombre: erase($nombre, "#");
+    $names: str-split(&, ", ");
+
+    @if $howmany > 0 {
+      @for $i from 1 through $howmany {
+        $keys: index-to-key($breakpoints, $i);
+        @include from(map-get($breakpoints, $keys)) {
+          @at-root .#{$keys}\:#{$nombre} {
+            // @at-root .#{$keys}\>#{$nombre} {
+            @content;
+          }
+          @if length($names) > 1 {
+            @for $i from 2 through length($names) {
+              $algo: nth($names, $i);
+              $algo: erase($algo, " ");
+              $algo: erase($algo, ".");
+              $algo: erase($algo, "#");
+              $identifier: #{$keys}\:#{$nombre};
+
+              @at-root .#{$keys}\:#{$algo} {
+                @content;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// example
+
+//   .h1{
+//     @include breakpointMaker(2){
+//         color:red;
+//     };
+//   }
+
+@mixin breakpointMakerTo($breakpointMaker: $breakpointMaker) {
+  @content;
+  @if $breakpointMaker {
+    $howmany: length($breakpoints);
+    $nombre: erase(separateTwoSelectors(1), ".");
+    $nombre: erase($nombre, "#");
+
+    $names: str-split(&, ", ");
+
+    @if $howmany > 0 {
+      @for $i from 1 through $howmany {
+        $keys: index-to-key($breakpoints, $i);
+        @include to(map-get($breakpoints, $keys)) {
+          @at-root .#{$keys}\:#{$nombre} {
+            // @at-root .#{$keys}\>#{$nombre} {
+            @content;
+          }
+          @if length($names) > 1 {
+            @for $i from 2 through length($names) {
+              $algo: nth($names, $i);
+              $algo: erase($algo, " ");
+              $algo: erase($algo, ".");
+              $algo: erase($algo, "#");
+              $identifier: #{$keys}\:#{$nombre};
+
+              @at-root .#{$keys}\:#{$algo} {
+                @content;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//------------------cal----------------------------------*/
+@mixin clamp($min, $width, $max) {
+  // width: clamp(min, prefered, max);
+  min-width: $min;
+  width: $width;
+  max-width: $max;
+}
+//------------------box em----------------------------------*/
+@mixin box-em($height, $width: $height, $lower: false) {
+  display: inline-block;
+  height: $height;
+  width: $width;
+  @if $lower {
+    line-height: $height - 0.2em;
+  } @else {
+    line-height: $height;
+  }
+  text-align: center;
+}
+//------------------box px----------------------------------*/
+
+@mixin box-px($height, $font, $width: false) {
+  font-size: $font;
+
+  $height: strip-unit($height);
+  $font: strip-unit($font);
+  // $realHeight: ($height * 1em)/$font;
+
+  $realHeight: ruleofthree($font, 1em, $height);
+
+  height: $realHeight;
+  line-height: $realHeight;
+  @if $width {
+    $width: strip-unit($width);
+    $realWidth: Div(($width * 1em), $font);
+    width: $realWidth;
+  }
+}
+
+// usage
+// .box-em {
+//   @include box(40px, 10px, 400px); // height, font, width
+// }
+
+// font-size: 10px;
+// height: 4em;
+// line-height: 4em;
+// width: 40em;
+
+//------------------prop----------------------------------*/
+
+@mixin propLoop($key, $value) {
+  @if $key == bg {
+    @include bg-($value);
+  }
+  // ----------------
+  @else if $key == t {
+    @include t-($value);
+  }
+  // -------------------------------
+  @else if $key == m {
+    @include m-($value);
+  }
+  // -------------------------------
+  @else if $key == my {
+    @include my-($value);
+  }
+  // -------------------------------
+  @else if $key == mx {
+    @include mx-($value);
+  }
+  // ----------------
+  @else if $key == mr {
+    @include mr-($value);
+  }
+  // ----------------
+  @else if $key == ml {
+    @include ml-($value);
+  }
+  // ----------------
+  @else if $key == mt {
+    @include mt-($value);
+  }
+  // ----------------
+  @else if $key == mb {
+    @include mb-($value);
+  }
+  // -------------------------------
+  @else if $key == p {
+    @include p-($value);
+  }
+  // -------------------------------
+  @else if $key == py {
+    @include py-($value);
+  }
+  // -------------------------------
+  @else if $key == px {
+    @include px-($value);
+  }
+  // ----------------
+  @else if $key == pr {
+    @include pr-($value);
+  }
+  // ----------------
+  @else if $key == pl {
+    @include pl-($value);
+  }
+  // ----------------
+  @else if $key == pt {
+    @include pt-($value);
+  }
+  // ----------------
+  @else if $key == pb {
+    @include pb-($value);
+  }
+  // ----------------
+  @else {
+    #{$key}: $value;
+  }
+}
+
+@mixin prop-size($size, $colors...) {
+  &#{$size} {
+    @include prop($colors...) {
+      @content;
+    }
+  }
+}
+
+@mixin prop($colors...) {
+  @content;
+  @each $key, $value in $colors {
+    @include propLoop($key, $value);
+  }
+}
+
+// usage
+// .h1 {
+//   @include prop(mt 200px, bg danger, t danger, pt 3px, border (50px solid red));
+//   @include prop-size("-xxxxx", margin 1000px, mt 200px);
+// }
+
+// output
+// .h1 {
+//   margin-top: 200px;
+//   background-color: #dc3545;
+//   background-color: var(--danger);
+//   color: #dc3545;
+//   color: var(--danger);
+//   padding-top: 3px;
+//   border: 50px solid red; }
+
+// .h1-xxxxx {
+//   margin: 1000px;
+//   margin-top: 200px; }
+
+//-------------------clean margins----------------------------------//
+
+@mixin clean {
+  @include prop(m 0, p 0);
+}
+
+// pxx {
+//   @include clean;
+//   color: red;
+// }
+
+//-------------------loopMap----------------------------------//
+@mixin loopMap($map) {
+  @each $key, $value in $map {
+    @include propLoop($key, $value);
+  }
+}
+
+//-------------------mapProps----------------------------------//
+@mixin mapProps($this, $map) {
+  $styles: $map;
+  @extend %#{$this};
+
+  @each $key, $value in $styles {
+    @if $key != default {
+      &-#{$key} {
+        @extend %#{$this};
+        @include loopMap(map-deep-get($styles, $key));
+      }
+    }
+  }
+}
+// usage
+//  @include mapProps(hr, $hr-styles);

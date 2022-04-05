@@ -1,0 +1,135 @@
+//-------------------grid----------------------------------//
+@mixin gap {
+  row-gap: calc(var(--gap-row) * 2px);
+  column-gap: calc(var(--gap-col) * 2px);
+  // gap: var(--gap, auto);
+}
+//-------------------grid----------------------------------//
+.grid {
+  @extend %gap-0;
+  @include breakpointMaker {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-flow: dense;
+    // & > * {
+    //   height: auto;
+    // }
+    @include gap;
+    &.stretch > * {
+      height: min-content;
+    }
+  }
+}
+// ==================grid row================
+.grid-row {
+  @extend %gap-0;
+  // --row-size: 1fr;
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  @include gap;
+  @each $key, $value in $numbers {
+    &-#{$key} {
+      @extend .grid-row;
+      grid-template-rows: repeat($key, 1fr);
+    }
+  }
+}
+
+// grid childs ----------------------
+.item {
+  @include breakpointMaker {
+    // &-left {
+    //   justify-self: start;
+    //   align-self: start;
+    // }
+    // &-center {
+    //   justify-self: center;
+    //   align-self: center;
+    // }
+    // &-right {
+    //   justify-self: end;
+    //   align-self: end;
+    // }
+    &-full {
+      // grid-column: span ;
+      // grid-column: 1 / column-line-end;
+      // grid-row: 1 / row-line-end;
+      grid-column-end: -1;
+      grid-column-start: 1;
+    }
+    &-full-col {
+      grid-column: 1 / column-line-end;
+    }
+    &-full-row {
+      grid-row: 1 / row-line-end;
+    }
+
+    // number of columns taken per child item
+    @each $key, $value in $numbers {
+      &-#{$key} {
+        grid-column-end: span $key;
+      }
+    }
+  }
+}
+// grid & column gap-----------------------------
+// [class*="grid-"].gap,
+
+// .grid.gap,
+// .row.gap {
+//   @include breakpointMaker {
+//     @for $var from 0 to 5 {
+//       &-#{$var} {
+//         gap: $padding * $var;
+//         column-gap: $padding * $var;
+//       }
+//     }
+//   }
+// }
+
+.flow {
+  @include breakpointMaker {
+    @each $value in $grid-auto-flow {
+      &-#{$value} {
+        grid-auto-flow: $value;
+      }
+    }
+  }
+}
+
+// responsive layout
+@for $i from 0 through 10 {
+  .col-#{50 * $i} {
+    // display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fit, minmax(50px * $i, 1fr));
+  }
+}
+
+// ----------------------------------------------
+//     grid
+// grid-column-gap
+// grid-row-gap
+// gap
+
+// grid-template-columns: max-content  50px 40px;
+// grid-template-rows: repeat(1, var(--col-size, 1fr));
+
+// grid-auto-flow: dense; // row, column, dense
+
+// justify-content: ;
+
+// place-items:
+//   justify-items
+//   align-items
+
+//       items
+// justify-self: start; // center end
+// align-self: start;
+
+// grid-area
+
+// grid-column:
+// grid-row:
+
+// grid-column-end: span 2;

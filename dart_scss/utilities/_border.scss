@@ -1,0 +1,87 @@
+//-------------------border line----------------------------------//
+.b {
+  border: 1px solid Color(gray-light);
+  border: 1px solid Var(gray-light);
+
+  // all sides
+  @for $i from 0 through 10 {
+    &-#{$i} {
+      border-width: $i * 1px;
+      border-style: solid;
+    }
+  }
+
+  // directions
+  @for $i from 0 through 10 {
+    @each $key, $value in $directions {
+      &#{$value}-#{$i},
+      &-#{$key}-#{$i} {
+        border-#{$key}-width: $i * 1px;
+        border-#{$key}-style: solid;
+      }
+      // ----------------y x
+      &y-#{$i} {
+        @extend .bt-#{$i};
+        @extend .bb-#{$i};
+      }
+      &x-#{$i} {
+        @extend .bl-#{$i};
+        @extend .br-#{$i};
+      }
+    }
+  }
+
+  // border style
+  @each $style in $border-style {
+    &-#{$style} {
+      border-left-style: $style;
+      border-right-style: $style;
+      border-top-style: $style;
+      border-bottom-style: $style;
+      // border-style: $style;
+      // border-width: 0;
+    }
+  }
+
+  // ----- colors
+  &-transparent,
+  &-t {
+    background-color: transparent;
+  }
+  &-inherit,
+  &-i {
+    background-color: inherit;
+  }
+  // ------
+  &-current-color,
+  &-cc {
+    background-color: currentColor;
+  }
+  // ------
+  @each $key, $color in $colors {
+    &-#{"" + $key} {
+      border-color: $color;
+      border-color: Var(#{$key});
+    }
+  }
+}
+
+// glow ------------------------
+// .glow {
+//   @each $key, $color in $colorStatic {
+//     &-#{"" + $key}:focus {
+//       box-shadow: 0 0 5px Var($key);
+//     }
+//   }
+//   @each $key, $color in $colors {
+//     &-#{"" + $key}:focus {
+//       box-shadow: 0 0 5px Var($key);
+//     }
+//     &-#{"" + $key}-light:focus {
+//       box-shadow: 0 0 5px Var(#{"" + $key}-light);
+//     }
+//     &-#{"" + $key}-dark:focus {
+//       box-shadow: 0 0 5px Var(#{"" + $key}-dark);
+//     }
+//   }
+// }

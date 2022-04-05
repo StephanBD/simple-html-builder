@@ -1,0 +1,132 @@
+//-------------------crop image----------------------------------//
+.crop {
+  @include breakpointMaker {
+    @include crop;
+  }
+}
+
+//-------------------content = data-content ----------------------------------//
+.content-before::before {
+  content: attr(data-content);
+}
+.content-after::after {
+  content: attr(data-content);
+}
+// data-content="data"
+
+//-------------------opacity----------------------------------//
+.opacity {
+  @include breakpointMaker {
+    @for $i from 0 through 10 {
+      &-#{$i} {
+        filter: alpha(opacity=($i * 10)); // internet explorer */
+        -khtml-opacity: (math.div($i, 10)); // khtml, old safari */
+        -moz-opacity: (math.div($i, 10)); // mozilla, netscape */
+        opacity: (math.div($i, 10)); // fx, safari, opera */
+      }
+    }
+  }
+}
+
+//-------------------float----------------------------------//
+.float {
+  @include breakpointMaker {
+    &-right {
+      float: right;
+    }
+    &-left {
+      float: left;
+    }
+  }
+}
+//-------------------clear----------------------------------//
+
+.clear {
+  @include breakpointMaker {
+    @each $value in $clear {
+      &-#{$value} {
+        clear: $value;
+      }
+    }
+  }
+}
+//-------------------object fit----------------------------------//
+.fit,
+.object {
+  @include breakpointMaker {
+    @each $value in $object-fit {
+      &-#{$value} {
+        object-fit: $value;
+      }
+    }
+  }
+}
+//-------------------overflow----------------------------------//
+.overflow,
+.of {
+  @include breakpointMaker {
+    @each $value in $overflow {
+      &-#{$value} {
+        overflow: $value;
+      }
+      &-y {
+        &-#{$value} {
+          overflow-y: $value;
+        }
+      }
+      &-x {
+        &-#{$value} {
+          overflow-x: $value;
+        }
+      }
+    }
+  }
+}
+//------------------visibility----------------------------------*/
+
+.visibility,
+.v {
+  @include breakpointMaker {
+    @each $value in $visibility {
+      &-#{$value} {
+        visibility: $value;
+      }
+    }
+  }
+}
+
+//-------------------display----------------------------------//
+.d,
+.display {
+  @include breakpointMaker {
+    @each $play in $display {
+      @include breakpointMaker {
+        &-#{$play} {
+          display: $play;
+        }
+      }
+    }
+  }
+}
+
+//-------------------prevent resize----------------------------------//
+.no-resize {
+  resize: none;
+}
+
+.horizontal-resize {
+  resize: horizontal;
+}
+
+.vertical-resize {
+  resize: vertical;
+}
+//-------------------list-style-type----------------------------------//
+
+@each $value in $list-style {
+  .li-#{$value} {
+    @include breakpointMaker {
+      list-style-type: #{$value};
+    }
+  }
+}

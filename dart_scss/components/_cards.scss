@@ -1,0 +1,214 @@
+%card-default {
+  @include loopMap(map-deep-get($card-styles, default));
+}
+
+// img sizes -------------------------------
+@mixin card-img-sizes {
+  &-sm {
+    width: 40px;
+  }
+  &-md {
+    width: 75px;
+  }
+  &-lg {
+    width: 120px;
+  }
+  &-xl {
+    width: 150px;
+  }
+  @content;
+}
+
+@mixin card-img {
+  &,
+  &-sm,
+  &-md,
+  &-lg,
+  &-xl {
+    @content;
+  }
+}
+.card-thumbnail {
+  @include card-img-sizes {
+    @include mx-(auto);
+  }
+}
+
+//-------------------card----------------------------------//
+%cardImg {
+  display: block;
+  width: 100%;
+  @include img-container;
+}
+
+.card {
+  height: min-content;
+  overflow: hidden;
+  border-collapse: collapse;
+
+  @include mapProps(card-default, $card-styles);
+  //  -----------------------
+  &.stretch {
+    height: auto;
+    align-items: flex-start;
+  }
+  // ---------
+  &-img {
+    height: 150px;
+    @extend %cardImg;
+    &-sm {
+      height: 50px;
+      @extend %cardImg;
+    }
+    &-md {
+      height: 100px;
+      @extend %cardImg;
+    }
+    &-lg {
+      height: 200px;
+      @extend %cardImg;
+    }
+    &-xl {
+      height: 250px;
+      @extend %cardImg;
+    }
+  }
+  // ---------
+  &-head {
+    // font-size: 1rem + 0.25;
+    font-weight: 700;
+    // text-align: center;
+    @include px-(Div($padding, 2));
+  }
+  // ---------
+  &-body {
+    // font-size: 1rem;
+    // height: 100%;
+    @include ml-($margin);
+    padding-left: Div($padding, 2);
+    padding-right: Div($padding, 2);
+    &-m {
+      padding-right: Div($padding, 2);
+      padding-left: Div($padding, 2);
+      margin-top: $margin;
+      margin-bottom: $margin;
+    }
+  }
+  // ---------
+  &-footer {
+    // margin: auto ;
+    font-size: 1em * 0.8;
+    align-self: flex-start;
+    justify-self: flex-start;
+    padding: Div($padding, 2);
+    // font-style: italic;
+    // background-color: red;
+  }
+
+  &-column {
+    @extend .card;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+  }
+  &-row {
+    // width: 30%;
+    @extend .card;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+// --------------------------------------
+.card-row {
+  position: relative;
+  display: block;
+  @include mapProps(card-default, $card-styles);
+  // ----------
+  @include from($sm) {
+    padding-left: 200px;
+  }
+
+  // -------------
+  & > .card-thumbnail {
+    @include card-img {
+      display: block;
+      left: 0;
+      top: 0;
+      @include from($sm) {
+        @include img-container;
+        height: 100%;
+        position: absolute;
+        padding-left: inherit;
+      }
+    }
+  }
+}
+
+//------------------card3----------------------------------
+
+// %card-img-float {
+//   display: block;
+//   // height: auto;
+// }
+.card-float {
+  position: relative;
+  clear: both;
+  @include mapProps(card-default, $card-styles);
+  &-r,
+  &-l {
+    // position: relative;
+    // clear: both;
+    @extend .card-float;
+  }
+
+  $className: #{&};
+  // ----------
+
+  // ----------
+  & > .card-thumbnail {
+    @include card-img {
+      display: block;
+      @include from($sm) {
+        float: left;
+      }
+
+      @at-root #{$className}-r > .card-img {
+        @include card-img {
+          float: right;
+        }
+      }
+      @at-root #{$className}-l > .card-img {
+        @include card-img {
+          float: left;
+        }
+      }
+    }
+  }
+  // ----------
+  & > .card-body {
+    display: block;
+    // clear: right;
+    // min-width: 200px;
+  }
+}
+
+//------------------card4----------------------------------
+
+.card-flex {
+  height: min-content;
+  flex-wrap: wrap;
+  @include flex-dcia(row, scpace-between);
+  @include mapProps(card-default, $card-styles);
+  & > .card-img {
+    @include card-img {
+      @include mx-(auto);
+    }
+  }
+  & > .card-body {
+    flex: 1;
+    min-width: 150px;
+  }
+}

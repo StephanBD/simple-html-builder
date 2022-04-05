@@ -1,0 +1,171 @@
+//-------------------flex----------------------------------//
+%flexChild {
+  @extend %gap-0;
+  // & > * {
+  //   @include mb-(calc(var(--gap-row-flex, 0) * 1px));
+  //   @include from($sm) {
+  //     @include mx-(calc(var(--gap-col-flex, 0) * 1px));
+  //   }
+  // }
+}
+
+// --------------------------
+.flex {
+  // @include breakpointMaker(true) {
+  // @extend %flex;
+  display: -ms-flexbox;
+  display: flex;
+  // --------
+  flex-direction: row;
+  // --------
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @extend %flexChild;
+
+  // --------
+  &-inline {
+    @extend .flex;
+    display: inline-flex;
+    @extend %flexChild;
+  }
+  // --------
+  &-col {
+    @extend .flex;
+    flex-direction: column;
+    @extend %flexChild;
+    // --------
+    &-inline {
+      @extend .flex-col;
+      display: inline-flex;
+      @extend %flexChild;
+    }
+  }
+}
+
+.stretch > * {
+  flex: 1;
+}
+
+//-------------------childs----------------------------------//
+.flex-auto {
+  @include breakpointMaker {
+    // flex-basis: 100%;
+    // flex: 1;
+    flex: calc(1 - (var(--gap-col-flex, 0) / 100)) 1 0%;
+  }
+}
+
+$count: 12;
+$countStart: $count;
+
+%w-100 {
+  width: 100%;
+}
+
+// --------------
+
+%flex-1 {
+  margin-bottom: calc((var(--gap-col-flex, 0) * 2px));
+  // flex-grow: 1;
+  width: 100%;
+}
+
+.flex {
+  @while $count > 0 {
+    // &-#{$count},
+    // &-#{$count}-lg,
+    // &-#{$count}-xl,
+    &-#{$count}-sm,
+    &-#{$count}-md {
+      @extend %flex-1;
+    }
+    // --------
+    $count: $count - 1;
+  }
+}
+
+// --------------
+@mixin flexAll($flexName: "") {
+  @while $count > 0 {
+    &-#{$count}#{$flexName} {
+      // width: 100%;
+      @include flex-12($count);
+    }
+    // --------
+    $count: $count - 1;
+  }
+}
+
+// ======================
+.flex {
+  %mx- {
+    // @include mx-(var(--gap, 0));
+
+    @include mb-(var(--gap-row-flex, 0));
+    @include from($sm) {
+      @include mx-(var(--gap-col-flex, 0));
+    }
+  }
+  // ---------------
+
+  @include from($sm) {
+    // ------------
+    $count: 12;
+    %mx- {
+      @include mb-(var(--gap-row-flex, 0));
+      @include from($sm) {
+        @include mx-(var(--gap-col-flex, 0));
+      }
+    }
+  }
+  // -------------
+  @while $count > 0 {
+    &-#{$count} {
+      @include flex-12($count);
+    }
+    // --------
+    $count: $count - 1;
+  }
+
+  //  ----------
+  @include from($sm) {
+    @include flexAll("-sm");
+  }
+  //  ----------
+  @include from($md) {
+    @include flexAll("-md");
+  }
+}
+
+//-----------------------------------------------------//
+
+// container
+
+// display:
+// flex-wrap:
+// flex-direction:
+
+// align-items:
+// justify-content:
+// justify-items:
+// align-content:
+
+// // children
+
+// order: default is 0
+// flex-grow: 0
+// flex-shrink: 1
+// flex-basis: auto, fill, max-content, min-content, fit-content, 20px, content
+// flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+// align-self: auto | flex-start | flex-end | center | baseline | stretch;
+
+// selectors
+// [attribute=value]
+
+// ~ Selects all elements with a attribute containing the word "flower" (en flower)
+// | Selects all elements with a attribute value starting with "en" (en-us)
+// ^ Selects every <a> element whose attribute value begins with "https" (testsecond)
+// $ Selects every <a> element whose attribute value ends with ".pdf" (secondtest)
+// * Selects every <a> element whose attribute value contains the substring "w3schools" (sectestond)

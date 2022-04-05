@@ -1,0 +1,49 @@
+// filter: url("filters.svg#filter-id");
+// filter: blur(5px);
+// filter: brightness(0.4);
+// filter: contrast(200%);
+// filter: drop-shadow(16px 16px 20px blue);
+// filter: grayscale(50%);
+// filter: hue-rotate(90deg);
+// filter: invert(75%);
+// filter: opacity(25%);
+// filter: saturate(30%);
+// filter: sepia(60%);
+
+// // Apply multiple filters */
+// filter: contrast(175%) brightness(3%);
+
+// // Global values */
+// filter: inherit;
+// filter: initial;
+// filter: unset;
+
+//-------------------blur----------------------------------//
+.blur {
+  // -webkit-filter: blur(2px);
+  filter: blur(2px);
+  @for $i from 2 through 7 {
+    &-#{$i} {
+      // -webkit-filter: blur(#{$i}px);
+      filter: blur(#{$i}px);
+
+      &-bg {
+        // -webkit-backdrop-filter: blur(#{$i}px);
+        backdrop-filter: blur(#{$i}px);
+      }
+    }
+  }
+  &-bg {
+    // -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+}
+
+//-------------------grayscale----------------------------------//
+.grayscale {
+  @for $i from 0 through 10 {
+    &-#{$i} {
+      filter: grayscale($i);
+    }
+  }
+}
