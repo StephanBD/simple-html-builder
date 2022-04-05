@@ -7,12 +7,15 @@
 const tags = [
 	{
 		tag: "ul",
+		textContent: "ul",
 	},
 	{
 		tag: "li",
+		textContent: "li",
 	},
 	{
 		tag: "input",
+		textContent: "input",
 		attributes: {
 			type: "text",
 			placeholder: "placeholder",
@@ -21,15 +24,19 @@ const tags = [
 	},
 	{
 		tag: "textarea",
+		textContent: "textarea",
 	},
 	{
 		tag: "p",
+		textContent: "p",
 	},
 	{
 		tag: "div",
+		textContent: "div",
 	},
 	{
 		tag: "span",
+		textContent: "span",
 	},
 	{
 		tag: "table",
@@ -262,28 +269,28 @@ const algo = {
 					children: "classes",
 					tag: "BUTTON",
 					attributes: {
-						className: "btn-md btn-tab"
+						className: "btn-md "
 					}
 				},
 				{
 					children: "tags",
 					tag: "BUTTON",
 					attributes: {
-						className: "btn-md btn-tab active"
+						className: "btn-md  active"
 					}
 				},
 				{
 					children: "components",
 					tag: "BUTTON",
 					attributes: {
-						className: "btn-md btn-tab"
+						className: "btn-md "
 					}
 				},
 				{
 					children: "code",
 					tag: "BUTTON",
 					attributes: {
-						className: "btn-md btn-tab btn-generate-code"
+						className: "btn-md  btn-generate-code"
 					}
 				}
 			],
@@ -324,7 +331,7 @@ const algo = {
 	tag: "DIV",
 	textContent: "builder modal",
 	attributes: {
-		className: "modal-draggable bg-white shadow-md",
+		className: "bg-white shadow-md",
 		autocomplete: "off"
 	}
 }

@@ -3,73 +3,31 @@ header.bg-gray.menubar.p.t-light.t-uppercase.flex-col
 	nav
 		a.menubar-item(class="hover:bg-gray-light-t" ).round-1#btn-menu
 			<i class="fas fa-bars box-2 "></i>
-			span.menubar-text Navbar
-		//- ---------
-		a.menubar-item(class="hover:bg-gray-light-t" href="index.html").round-1
-			<i class="fas fa-home box-2"></i>
-			span.menubar-text Start
-			span.menubar-tooltip.t-black Home
-		a.menubar-item(class="hover:bg-gray-light-t" href="all.html").round-1
-			<i class="fas fa-home box-2"></i>
-			span.menubar-text All
-			span.menubar-tooltip.t-black Default
-		a.menubar-item(class="hover:bg-gray-light-t" href="builder.html").round-1
-			<i class="fas fa-tools box-2"></i>
-			span.menubar-text builder
-			span.menubar-tooltip.t-black builder
 
-		//- -----------------------
-		.menubar-item(class="hover:bg-gray-light-t" href="#").round-1.menubar-dropdown
-			.menubar-tooltip.t-black tooltip
-			<i class="fas fa-puzzle-piece box-2"></i>
-			.menubar-text components
-			.menubar-dropdown-item.menubar-dropdown.hide
-				a(href="buttons.html")
-					<i class="fas fa-th-large box-2"></i>
-					span  Buttons
-				a(href="icons.html")
-					<i class="fas fa-th-large box-2"></i>
-					span  Icons
-				a(href="cards.html")
-					<i class="fas fa-th-large box-2"></i>
-					span  Cards
-		//- -----------------------
-		//- .menubar-item(class="hover:bg-gray-light-t" href="#").round-1.menubar-dropdown
-		//- 	.menubar-tooltip.t-black tooltip
-		//- 	<i class="fas fa-grip-vertical box-2"></i>
-		//- 	.menubar-text Sections
-		//- 	.menubar-dropdown-item.menubar-dropdown.hide
-		//- 		a(href="buttons.html")
-		//- 			<i class="fas fa-th-large box-2"></i>
-		//- 			span  header
-		//- //- -----------------------
-		//- .menubar-item(class="hover:bg-gray-light-t" href="#").round-1.menubar-dropdown
-		//- 	.menubar-tooltip.t-black tooltip
-		//- 	<i class="far fa-newspaper box-2"></i>
-		//- 	.menubar-text pages
-		//- 	.menubar-dropdown-item.menubar-dropdown
-		//- 		a(href="page_article.html")
-		//- 			<i class="fas fa-th-large box-2"></i>
-		//- 			span  article
-		//- 		a(href="page_product.html")
-		//- 			<i class="fas fa-th-large box-2"></i>
-		//- 			span  product 
-
-
-
+			a.menubar-item(class="hover:bg-gray-light-t" href="index.html").round-1
+				<i class="fas fa-tools box-2"></i>
+				span.menubar-text builder
+				span.menubar-tooltip.t-black builder
+			a.menubar-item(class="hover:bg-gray-light-t" href="all.html").round-1
+				<i class="fas fa-tags box-2"></i>
+				span.menubar-text All tags
+				span.menubar-tooltip.t-black Todos los tags
 
 	hr.mt-a.mb
 
-	p.menubar-item(class="hover:bg-gray-light-t" ).round-1
+	span.menubar-item(class="hover:bg-gray-light-t show-more" ).round-1
 		<i class="fas fa-text-height box-2"></i>
 		a.menubar-text.round-4.t-center.b#font-increase +
 		a.menubar-text.round-4.t-center.b#font-deincrease -
 
-	a.menubar-item(class="hover:bg-gray-light-t" href="#").round-1#dark-theme
+	span.menubar-item(class="hover:bg-gray-light-t" href="#").round-1#dark-theme
 		<i class="far fa-moon box-2"></i>
 		span.menubar-text dark theme
 		span.menubar-tooltip.t-black dark theme
-	a.menubar-item(class="hover:bg-gray-light-t" href="#").round-1#revealer
+	span.menubar-item(class="hover:bg-gray-light-t" href="#").round-1#revealer
 		<i class="far fa-eye box-2"></i>
 		span.menubar-text reveal borders
 		span.menubar-tooltip.t-black reveal borders
+	span.menubar-item(class="hover:bg-gray-light-t" href="#").round-1#revealer.t-sm
+		.box-2 
+		span.menubar-text Stephan Bautista

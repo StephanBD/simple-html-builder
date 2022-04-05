@@ -31,7 +31,7 @@ function pugDoc() {
 // watch ---------------------
 function watchpug() {
 	// watch( "src/pug_template/*.pug", pugDoc);
-	watch("pug_doc/*.pug", pugTemplate);
+	watch("**/*.pug", pugTemplate);
 	// watch( "src/pug_partials/*.pug", parallel(pugDoc, pugTemplate));
 }
 
@@ -41,10 +41,10 @@ function watching() {
 		notify: false,
 		open: true,
 		server: destiny,
-		baseDir: "./"
+		baseDir: "./index.html"
 	});
 	// --------
-	watch("pug_docs/*.pug", parallel(pugDoc, pugTemplate));
+	watch("**/*.pug", pugDoc);
 	watch([destiny + "**/*"]).on("change", browserSync.reload);
 }
 

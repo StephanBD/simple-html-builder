@@ -28,7 +28,9 @@ body {
   // margin-left: Em(71.0625px);
   min-height: 100vh;
 }
-
+.box-2 {
+  pointer-events: none;
+}
 .menubar {
   $menubar: &;
   // @include t-(light);

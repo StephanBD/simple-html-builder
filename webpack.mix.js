@@ -8,11 +8,11 @@ const destiny = "docs";
 //-----------------------------------------------------//
 
 mix
-	.sass(`scss/main.scss`, `/css`)
+	.sass(`scss/doc.scss`, `/css/main.css`)
 	// .sass(`scss/doc.scss`, `documentation/css/main.css`)
 
 	//-----------------------------------------------------//
-	.js(`javascript/app.js`, `/js`)
+	.js(`javascript/doc.js`, `/js/app.js`)
 	// .js(`javascript/doc.js`, 'documentation/js/app.js')
 
 

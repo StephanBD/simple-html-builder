@@ -39,7 +39,7 @@ const menubar = query(".menubar");
 btn.addEventListener("click", e => {
 	e.preventDefault();
 	// console.log("click menu", query(".menubar"));
-	query(".menubar").classList.toggle("active");
+	menubar.classList.toggle("active");
 });
 
 // -------------------------------
@@ -48,36 +48,49 @@ menubar.addEventListener(
 	e => {
 		// console.log(e.target);
 
-		let childDropdown;
-		if (
-			e.target.classList.contains("menubar-dropdown") &&
-			e.target.children[0]
-		) {
-			childDropdown = query(".menubar-dropdown-item", e.target);
-			// console.log("father");
-		} else if (e.target.parentElement.classList.contains("menubar-dropdown")) {
-			childDropdown = query(".menubar-dropdown-item", e.target.parentElement);
-		}
+		// let childDropdown;
+		// if (
+		// 	e.target.classList.contains("menubar-dropdown") &&
+		// 	e.target.children[0]
+		// ) {
+		// 	childDropdown = query(".menubar-dropdown-item", e.target);
+		// 	// console.log("father");
+
+		// } else if (e.target.parentElement.classList.contains("menubar-dropdown")) {
+		// 	childDropdown = query(".menubar-dropdown-item", e.target.parentElement);
+		// }
+		// -----
 		// console.log(e.target.parentElement);
-		if (childDropdown) {
-			if (
-				!menubar.classList.contains("active") ||
-				childDropdown.classList.contains("hide")
-			) {
-				menubar.classList.add("active");
-				childDropdown.classList.remove("hide");
-			} else {
-				toggleClass(childDropdown);
-			}
-		}
+		// if (childDropdown) {
+		// 	if (
+		// 		!menubar.classList.contains("active") ||
+		// 		childDropdown.classList.contains("hide")
+		// 	) {
+		// 		menubar.classList.add("active");
+		// 		childDropdown.classList.remove("hide");
+		// 	} else {
+		// 		toggleClass(childDropdown);
+		// 	}
+		// } else {
+		// 	menubar.classList.toggle("active");
+		// 	console.log("here");
+		// }
+
 		// childDropdown = query(".menubar-dropdown-item", e.target);
 		// console.log(childDropdown);
 		// if (childDropdown) {
 		//   toggleBlock(childDropdown);
 		// }
+		// --------
+		// const tagName = e.target.tagName
+		if (e.target.classList.contains("show-more") || e.target === menubar) {
+			menubar.classList.toggle("active");
+		}
 	},
 	false
 );
+
+
 // -----------------
 function toggleClass(node) {
 	node.classList.toggle("hide");

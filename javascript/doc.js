@@ -521,7 +521,7 @@ function PropertyToNode(propertiesObj, element) {
 		}
 	}
 }
-console.log(allTags);
+// console.log(allTags);
 // ==============================createNodes=================================
 function createNodes(node, custome = null, index = null, deep = true, nodeType = "") {
 	let element
